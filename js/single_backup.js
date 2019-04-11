@@ -42,78 +42,6 @@ $(document).ready(function() {
 
 
     ////// DRAG&DROP //////
-    var dragObject = {};
-
-    document.onmousedown = function(e) {
-        if (e.which != 1) return; 
-
-        var elem = e.target.closest('.tile');
-        if (!elem) return; 
-
-        dragObject.elem = elem;
-
-        var coords = getCoords(dragObject.elem);
-
-        var shiftX = e.pageX - coords.left;
-        var shiftY = e.pageY - coords.top;
-
-        dragObject.elem.style.position = 'absolute';
-        document.body.appendChild(dragObject.elem);
-        dragObject.elem.style.zIndex = 1000;
-
-        moveAt(e);
-        
-        function moveAt(e) {
-            dragObject.elem.style.left = e.pageX - shiftX + 'px';
-            dragObject.elem.style.top = e.pageY - shiftY + 'px';
-        }
-
-        function getCoords(elem) {
-            var box = elem.getBoundingClientRect();
-            return {
-                top: box.top + pageYOffset,
-                left: box.left + pageXOffset
-            };
-        };
-
-        document.onmousemove = function(e) {
-            if (!dragObject.elem) return;
-
-            moveAt(e);
-        }
-
-        document.onmouseup = function(e) {
-            if (dragObject.elem) {
-                finishDrag(e);
-            }
-
-            dragObject = {};
-        }
-
-        function finishDrag(e) {
-            var dropElem = findDroppable(e);
-
-            if (dropElem) {
-                dropElem.appendChild(dragObject.elem);
-                dragObject.elem.style.left = 0;
-                dragObject.elem.style.top = 0;
-            }
-        }
-
-        function findDroppable(event) {
-            dragObject.elem.hidden = true;
-            var elem = document.elementFromPoint(event.clientX, event.clientY);
-            dragObject.elem.hidden = false;
-
-            return elem.closest('.droppable');
-        }
-
-    }
-
-
-    
-
-
     $('.tile').mouseenter(function() {
         curTileId = $(this).attr('id');
     });
@@ -122,6 +50,47 @@ $(document).ready(function() {
         curTileId = '';
     });
 
+    $('.tile').each(function() {
+        $(this).mousedown(function(e) {
+            var tile = $(this)[0];
+
+            var coords = getCoords(tile);
+            var shiftX = e.pageX - coords.left;
+            var shiftY = e.pageY - coords.top;
+
+            tile.style.position = 'absolute';
+            moveAt(e);
+            document.body.appendChild(tile);
+
+            tile.style.zIndex = 1000;
+
+            function moveAt(e) {
+                tile.style.left = e.pageX - shiftX + 'px';
+                tile.style.top = e.pageY - shiftY + 'px';
+            }
+
+            document.onmousemove = function(e) {
+                moveAt(e);
+            }
+
+            tile.onmouseup = function() {
+                document.onmousemove = null;
+                tile.onmouseup = null;
+            }
+
+            tile.ondragstart = function() {
+                return false;
+            };
+
+            function getCoords(elem) {   // кроме IE8-
+                var box = elem.getBoundingClientRect();
+                return {
+                    top: box.top + pageYOffset,
+                    left: box.left + pageXOffset
+                };
+            };
+        })
+    });
 
 
     setLongCatWidth();

@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+		<script src="assets/js/game.js"></script>
+		<title>FIASCO</title>
+	</head>
+	<body>
+			<center>
+				<div id='board'>				
+					<a href='#' onClick="startGame(3);"><button>3 игрока</button></a>
+					<a href='#' onClick="startGame(4);"><button>4 игрока</button></a>
+					<a href='#' onClick="startGame(5);"><button>5 игроков</button></a>
+				</div>
+			</center>
+			<div class='playerBoard' id='trash' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Сброс</br></div>
+            <div class='playerBoard' id='pb1' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Игрок 1 (<span class='playerName' id='pn1'></span>)</br></div>
+            <div class='playerBoard' id='pb2' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Игрок 2 (<span class='playerName' id='pn2'></span>)</br></div>
+            <div class='playerBoard' id='pb3' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Игрок 3 (<span class='playerName' id='pn3'></span>)</br></div>
+            <div class='playerBoard' id='pb4' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Игрок 4 (<span class='playerName' id='pn4'></span>)</br></div>
+            <div class='playerBoard' id='pb5' ondrop="dropDice(event);checkMid();" ondragover="allowDrop(event)" ondragleave="deleteGhost(); unlockDrag(this);">Игрок 5 (<span class='playerName' id='pn5'></span>)</br></div>
+	</body>
+</html>

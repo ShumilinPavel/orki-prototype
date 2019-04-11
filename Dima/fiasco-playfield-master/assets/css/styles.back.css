@@ -1,0 +1,111 @@
+body {
+	cursor: default;
+    user-select: none; /* Non-prefixed version, currently */
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+button {
+    width: 100%;
+    height: 30%;
+    font-size: 50pt;
+    font-weight: 500;
+}
+.playerBoard {
+    text-align: center;
+    background: radial-gradient(white, lightgray);
+    font-weight: 500;
+	border: 1px solid darkgray;
+    min-height: 102px;
+    visibility: hidden;
+}
+.place1 {
+	position: absolute;
+	border-radius: 0 10px 10px 0;
+	top: 30%;
+	left: 0;
+	width: 168px;
+    max-height: 438px;
+    padding-left: 2px;
+}
+.place2 {
+	position: absolute;
+	border-radius: 0 10px 0 0;
+	bottom: 0;
+	left: 0;
+	min-width: 168px;
+	max-width: 420px;
+    max-height: 186px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+}
+.place3 {
+	position: absolute;
+	border-radius: 10px 10px 0 0;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+	min-width: 168px;
+	max-width: 420px;
+    max-height: 186px;
+    padding-bottom: 2px;
+}
+.place4 {
+	position: absolute;
+	border-radius: 10px 0 0 0;
+	bottom: 0;
+	right: 0;
+	min-width: 168px;
+	max-width: 420px;
+    max-height: 186px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+.place5 {
+	position: absolute;
+	border-radius: 10px 0 0 10px;
+	top: 30%;
+	right: 0;
+	width: 168px;
+    max-height: 438px;
+    padding-right: 2px;
+}
+.placeTrash {
+	position: absolute;
+	border-radius: 0 0 10px 10px;
+	width: 336px;
+	top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-top: 2px;
+}
+#board {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	height: 336px;
+	width: 400px;
+}
+.dice {
+    position: relative;
+	width: 70px;
+	height: 70px;
+	font-weight: bold;
+	font-size: 390%;
+	text-align: center;
+	border-radius: 10px;
+	border: 2px solid black;
+	display: inline-block;
+	margin: 5px; 
+}
+.black {
+	color: white;
+    background: radial-gradient(rgb(90,90,90), rgb(50,50,50));
+}
+.white {
+	color: black;
+    background: radial-gradient(white, lightgray);
+}
