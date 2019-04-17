@@ -2,14 +2,35 @@ $(document).ready(function() {
     var curTileId = '';
     $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 
-    ////// ROTATION //////
+    ////// KEYBOARD HANDLER //////
     $(document).on('keydown', function(e) {
         if (curTileId == '') {
             return;
         }
 
         Rotate(e.keyCode);
+        Flip(e.keyCode);
     });
+
+    function Flip(keyCode) {
+        if (keyCode != 83) {
+            return;
+        }
+
+        var image = $('#' + curTileId).children()[0];
+
+        var strImageUrl = image.src;
+        var index = strImageUrl.indexOf('/pictures/');
+        var fileName = strImageUrl.substring(index + 10);
+        
+        var newFileName = fileName.split('.')[0] + "-back.png";
+        if (fileName.includes("back")) {
+            var parts = fileName.split("-back");
+            newFileName = parts[0] + parts[1];
+        }
+
+        $('#' + curTileId).children().attr("src", strImageUrl.substring(0, index + 10) + newFileName);
+    }
 
     function Rotate(keyCode) {
         var rotation = 0;
@@ -38,7 +59,6 @@ $(document).ready(function() {
                 rotation -= 360;
             }
         }
-
 
         if (curTileId == "cat-long") {
             console.log("done");
