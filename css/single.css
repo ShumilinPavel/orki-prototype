@@ -22,55 +22,84 @@ html, body {
 }
 
 .tile, .tile-border {
-	width: 146px;
-	height: 146px;
+  /*старые значения*/
+	/*width: 146px;
+	height: 146px;*/
+
+  /*точные значения*/
+  /*width: 151.173px;
+  height: 151.173px;*/
+
+  width: 151px;
+  height: 151px;
+
 	cursor: pointer;
 	user-select: none;
 
 	/*background-color: black;*/
 	border-radius: 100%;
 	position: relative;
-
-	transform-style: preserve-3d;
 }
 
-.tile__image, .tile-border__image {
+.tile__image {
 	pointer-events: none;
 	position: absolute;
-	top: -9.5%;
-	left: -2%;
+	top: -12px;
 	/*opacity: 0.7;*/
+}
+
+.tile-border__visual {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  /*background: yellowgreen;*/
+  background: radial-gradient(circle, red, yellow);
+  opacity: 0.7;
+  position: absolute;
+  top: 54.75px;
+  left: 54.75px;
+  transform: scale(1, 1);
+  transition: 200ms;
+}
+
+.tile-border__visual:hover {
+  transform: scale(1.5, 1.5);
+  transition: 200ms;
 }
 
 .tile-grid {
 	position: absolute;
 	bottom: 10px;
+  left: 10px;
+  background-image: url("../pictures/tile-grid-shell.png");
+  background-repeat: no-repeat;
+  width: 756.5px;
+  height: 438px;
 }
 
 .tile-grid__row {
 	display: flex;
 }
 
-.tile-grid__row:not(:first-child) {
-	position: relative;
-	/*top: -39px;*/
-}
-
 .tile-grid__row:nth-child(2n + 1) {
 	margin-left: 76px;
 }
 
+.tile-grid__row_first {
+  margin-top: 13px;
+}
+
 .tile-grid__row_second {
-	top: -14px;
+	top: -21px;
+  position: relative;
 }
 
 .tile-grid__row_third {
-	top: -28px;
+	top: -41px;
+  position: relative;
 }
 
-.tile-border {
-	margin: 0px 3px;
-}
+
 
 .tile-border_active {
 	border: 5px solid red;

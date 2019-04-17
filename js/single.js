@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var curTileId = '';
-
+    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 
     ////// ROTATION //////
     $(document).on('keydown', function(e) {
@@ -23,7 +23,8 @@ $(document).ready(function() {
 
         // A и стрелка влево
         if (keyCode == 65 || keyCode == 37) {
-            rotation -= 120;
+            if (curTileId == "cat-long") rotation -= 60;
+                                    else rotation -= 120;
             if (rotation < 0) {
                 rotation += 360;
             }
@@ -31,12 +32,41 @@ $(document).ready(function() {
         
         // D и стрелка вправо
         if (keyCode == 68 || keyCode == 39) {
-            rotation += 120;
+            if (curTileId == "cat-long") rotation += 60;
+                                    else rotation += 120;
             if (rotation > 360) {
                 rotation -= 360;
             }
         }
-        
+
+
+        if (curTileId == "cat-long") {
+            console.log("done");
+            if (rotation == 0 || rotation == 360) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translateY(-20%)');
+            }
+            if (rotation == 60) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(0, 0)');
+            }
+            if (rotation == 120) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%, 10%)');
+            }
+            if (rotation == 180) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(33%, 0%)');
+            }
+            if (rotation == 240) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(33%, -20%)');
+            }
+            if (rotation == 300) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%,-30%)');
+            }
+        }
+        else
+        //    if (rotation == 120) {
+        //        $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
+       //         translate (16%,10%);}
+        //    if (rotation == 240) {$('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)'); translate (0,0);}
+       // } else
         $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
     }
 
