@@ -10,16 +10,30 @@ html, body {
 .main-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    margin: 0 10px;
 }
 
 .status-bar {
     display: flex;
 }
 
-.wrap {
-	padding: 20px;
-	display: flex;
+.cat-tiles-base {
+  display: inline-flex;
+  min-height: 150px;
+  background-color: #FFE55E;
+  /* width: 1060px; */
+  width: 80%;
 }
+
+.btn-check {
+  align-self: center;
+  margin: auto;
+  width: 150px;
+  height: 40px;
+}
+
 
 .tile, .tile-border {
   /*старые значения*/
@@ -68,12 +82,10 @@ html, body {
 }
 
 .tile-grid {
-	position: absolute;
-	bottom: 10px;
-  left: 10px;
   background-image: url("../pictures/tile-grid-shell.png");
   background-repeat: no-repeat;
-  width: 756.5px;
+  /* width: 756.5px; */
+  width: 57%;
   height: 438px;
 }
 
@@ -108,6 +120,29 @@ html, body {
 .tile-border__image {
 	pointer-events: none;
 }
+
+.main-wrapper__row {
+  display: flex;
+}
+
+.main-wrapper__row_first {
+  align-items: center;
+}
+
+.riddle-card {
+  margin-left: 10px;
+}
+
+.info {
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
 
 .flip-card {
   background-color: transparent;

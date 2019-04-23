@@ -11,12 +11,12 @@ $(document).ready(function() {
         Rotate(e.keyCode);
         Flip(e.keyCode);
     });
-
+   
     function Flip(keyCode) {
         if (keyCode != 83) {
             return;
         }
-
+        
         var image = $('#' + curTileId).children()[0];
 
         var strImageUrl = image.src;
@@ -90,6 +90,12 @@ $(document).ready(function() {
         $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
     }
 
+    // function placeLongCatTileBack() {
+    //     var place = $('#cat-long').parent();
+    //     if (place.hasClass('tile-border')) {
+    //         place.css('z-index', 1);
+    //     }
+    // }
 
     ////// DRAG&DROP //////
     var dragObject = {};
@@ -161,7 +167,7 @@ $(document).ready(function() {
     }
 
 
-    
+    // TODO: Всю клетку с длинными котом z-index - 1
 
 
     $('.tile').mouseenter(function() {
