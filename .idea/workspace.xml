@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2f1df870-2f24-42b7-8e5f-392dcfcf029b" name="Default" comment="123">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/black-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/black.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/blue-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/blue.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/box1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/box2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/cat.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g12656.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g2016.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g36.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey-back1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/long-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/long.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/orange-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/orange.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-border.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid-shell.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/white-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/white.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/yellow-back.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/yellow.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/orki-prototype-master.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/css/styles.back.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/css/styles.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/js/game.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/README.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/css/style.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/js/index.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/license.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/single.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/start_screen.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/single.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/start_screen.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/Новый текстовый документ.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/single.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/single_backup.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/start_screen.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid.svg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/KP.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/bd.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/catalog.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/handler.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/main.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/reg.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/save_user.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Новый текстовый документ.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="single.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/js/single.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="252" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>false</service-enabled>
+    <exe-path />
+    <annotation-enable>false</annotation-enable>
+    <other-services-enabled>false</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="534" />
+    <option name="width" value="840" />
+    <option name="height" value="688" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="orki-prototype-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orki-prototype-master" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="orki-prototype-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orki-prototype-master" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Dima" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="orki-prototype-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orki-prototype-master" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="orki-prototype-master" type="b2602c69:ProjectViewProjectNode" />
+              <item name="orki-prototype-master" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f1df870-2f24-42b7-8e5f-392dcfcf029b" name="Default" comment="" />
+      <created>1556824217916</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556824217916</updated>
+      <workItem from="1556824404001" duration="23000" />
+      <workItem from="1556824427900" duration="477000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="500000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="123" />
+    <option name="LAST_COMMIT_MESSAGE" value="123" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/js/single.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="252" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

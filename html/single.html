@@ -22,7 +22,8 @@
 
 </head>
 
-<body>
+<body onload="refresh();">
+<span id="timer" style="font-size: 18pt"></span>
     <div class="main-wrapper">
         <div class="main-wrapper__row main-wrapper__row_first">
             <div class="tile-grid">
@@ -125,5 +126,22 @@
        
 
     </div>
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aboutModalLabel">Время вышло :(</h5>
+            </div>
+            <div class="modal-body">
+                <div class="aboutModal-title">Ваш результат:</div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="back-to-menu" class="btn btn-secondary" data-dismiss="modal">Назад</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
