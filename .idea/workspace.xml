@@ -1,64 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f1df870-2f24-42b7-8e5f-392dcfcf029b" name="Default" comment="123">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/black-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/black.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/blue-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/blue.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/box1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/box2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/cat.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g12656.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g2016.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/g36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey-back1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/grey.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/long-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/long.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/orange-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/orange.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-border.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid-shell.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/white-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/yellow-back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/yellow.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/orki-prototype-master.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/css/styles.back.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/css/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/assets/js/game.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/fiasco-playfield-master/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/README.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/js/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Dima/selectable-circle-grid/license.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/single.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/start_screen.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/single.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/start_screen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/html/Новый текстовый документ.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/single.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/single_backup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/start_screen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pictures/tile-grid.svg" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.htaccess" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/KP.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bd.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/catalog.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/handler.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/main.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reg.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/save_user.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Новый текстовый документ.txt" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-    </list>
+    <list default="true" id="2f1df870-2f24-42b7-8e5f-392dcfcf029b" name="Default" comment="123" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,12 +10,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="single.js" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="single.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/single.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="252" selection-end-column="1" />
+            <state relative-caret-position="228">
+              <caret line="248" column="11" lean-forward="true" selection-start-line="248" selection-start-column="11" selection-end-line="248" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="single.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/html/single.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="single.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/css/single.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -80,8 +43,22 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>tile-bor</find>
+      <find>log</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/html/single.html" />
+        <option value="$PROJECT_DIR$/js/single.js" />
+      </list>
+    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -118,6 +95,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -145,7 +123,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -176,11 +153,12 @@
       <updated>1556824217916</updated>
       <workItem from="1556824404001" duration="23000" />
       <workItem from="1556824427900" duration="477000" />
+      <workItem from="1557047898867" duration="13076000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="500000" />
+    <option name="totallyTimeSpent" value="13576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -188,8 +166,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.170347" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -198,6 +175,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -223,8 +201,32 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/js/single.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="252" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/single.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="248" column="11" lean-forward="true" selection-start-line="248" selection-start-column="11" selection-end-line="248" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/single.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>

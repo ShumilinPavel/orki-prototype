@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    configureGame();
+    refreshTimer();
+
     var curTileId = '';
     $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 
@@ -210,8 +213,23 @@ $(document).ready(function() {
         location.href="../html/start_screen.html"
     });
 
-});
+    $('.btn-check').on('click', function() {
+        var curRiddleCard = riddleCards[riddleCardId];
+        if (Check() == curRiddleCard['codeSequence']) {
+            $('.btn-check').css('background-color', 'green');
+            completedCards += 1;
+            getNextRiddleCard();
+            setKittiesOnStartPosition();
+        }
+        else {
+            $('.btn-check').css('background-color', 'red');
+        }
+        setTimeout(function() {
+            $('.btn-check').css('background-color', 'buttonface');
+        }, 2000);
+    });
 
+});
 
 function setLongCatWidth() {
     var width = $('#cat-black').prop('width');
@@ -225,29 +243,170 @@ function setGridPosition() {
     })
 }
 
-var sec=21;
-// выставляем минуты
-var min=10;
+// Начальное время таймера
+var sec = 30;
+var min = 300;
 
-function refresh()
+function refreshTimer()
 {
     sec--;
-    if(sec==-01){sec=59; min=min-1;}
-    //else{min=min;}
-    if(sec<=9){sec="0" + sec;}
-    time=(min<=9 ? "0"+min : min) + ":" + sec;
-    if(document.getElementById){timer.innerHTML=time;}
-    inter=setTimeout("refresh()", 1000);
-    // действие, если таймер 00:00
-    if(min=='00' && sec=='00'){
-        sec="00";
-        clearInterval(inter);
-        /* выводим сообщение в элемент с id="tut", например <div id="tut"></div> */
-        /* либо любой другой Ваш код */
-        $('#aboutModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-        $("#aboutModal").modal('show');
+    if (sec == -01) {
+        sec = 59;
+        min = min - 1;
     }
+    if (sec <= 9) {
+        sec = "0" + sec;
+    }
+    time = (min <= 9 ? "0" + min : min) + ":" + sec;
+    
+    if (document.getElementById) {
+        timer.innerHTML = time;
+    }
+    
+    inter = setTimeout("refreshTimer()", 1000);
+
+    if (min == '00' && sec == '00') {
+        clearInterval(inter);
+        finishGame();
+    }
+}
+
+function finishGame() {
+    $('#endGameModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+
+    $('.endGameModal-title').text("Ваш результат: " + completedCards + ".");
+
+    $("#endGameModal").modal('show');
+}
+
+function Check() {
+    var Checkrow = '';
+    $(".tile-border").each(function() {
+        if ($(this).children(".tile").length == 0) {
+            Checkrow += 's';
+        } else {
+            var tile = $(this).children(".tile")[0];
+            switch (tile.id) {
+                case 'cat-white':
+                    Checkrow += 'w';break;
+                case 'cat-orange':
+                    Checkrow += 'o';break;
+                case 'cat-black':
+                    Checkrow += 'b'; break;
+                case 'cat-blue':
+                    Checkrow += 'f'; break;
+                case 'cat-grey':
+                    Checkrow += 'g'; break;
+                case 'cat-yellow':
+                    Checkrow += 'y'; break;
+                case 'cat-long':
+                    Checkrow += 'l'; break;
+            }
+        }
+    });
+    //Массив индексов, которые нам нужно проверить на пустоту
+    var CheckMas = [[0,4,9], [1,5,10], [2,7,11], [3,8,12], [0,1,2,3], [9,10,11,12]];
+    var ifs = true;
+    $(CheckMas).each(function(a) {
+        ifs = true;
+        $(CheckMas[a]).each(function(c) {
+            if (Checkrow[CheckMas[a][c]] != 's') {
+                ifs = false;
+                // break?
+            }
+        });
+        if (ifs) {
+            var b = Checkrow.split("");
+            $(CheckMas[a]).each(function (c) {
+                b[CheckMas[a][c]] = 'e';
+            });
+            Checkrow = b.join("");
+        }
+    });
+    Checkrow = Checkrow.replace(/e/g, '');
+
+    Checkrow = getCheckRowWithRotation(Checkrow);
+
+    return Checkrow;
+}
+
+// Пулл карточек
+var riddleCards = [
+    {
+        'path': '../pictures/g12656.png',
+        'codeSequence': 'b240o240y360sg360f240w120'
+    },
+    {
+        'path': '../pictures/g2016.png',
+        'codeSequence': 's'
+    }
+]
+var riddleCardId = -1;
+var completedCards = 0;
+
+function configureGame() {
+    function compareRandom(a, b) {
+        return Math.random() - 0.5;
+    }
+
+    riddleCards.sort(compareRandom);
+    getNextRiddleCard();
+}
+
+function getNextRiddleCard() {
+    riddleCardId += 1;
+    if (riddleCardId >= riddleCards.length) {
+        finishGame();
+    };
+    $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
+}
+
+function setKittiesOnStartPosition() {
+    var base = $('.cat-tiles-base');
+    $('.tile').each(function() {
+        $(this).css('position', 'relative');
+        base.append($(this));
+    });
+}
+
+function getTileRotation(id) {
+    transfromStr = $('#' + id).children('img').attr('style');
+    if (transfromStr == undefined) {
+        return 360;
+    }
+    return parseInt(transfromStr.split('(')[1].split('deg)'));
+}
+
+function getCheckRowWithRotation(codeSequence) {
+    modifyedCodeSequence = '';
+    for (var i = 0; i < codeSequence.length; i++) {
+        modifyedCodeSequence += codeSequence[i];
+        switch (codeSequence[i]) {
+            case 'w':
+                modifyedCodeSequence += getTileRotation('cat-white');
+                break;
+            case 'o':
+                modifyedCodeSequence += getTileRotation('cat-orange');
+                break;
+            case 'b':
+                modifyedCodeSequence += getTileRotation('cat-black');
+                break;
+            case 'f':
+                modifyedCodeSequence += getTileRotation('cat-blue');
+                break;
+            case 'g':
+                modifyedCodeSequence += getTileRotation('cat-grey');
+                break;
+            case 'y':
+                modifyedCodeSequence += getTileRotation('cat-yellow');
+                break;
+            case 'l':
+                modifyedCodeSequence += getTileRotation('cat-long');
+                break;
+        }
+    }
+    return modifyedCodeSequence;
 }

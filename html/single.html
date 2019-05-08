@@ -22,8 +22,7 @@
 
 </head>
 
-<body onload="refresh();">
-<span id="timer" style="font-size: 18pt"></span>
+<body>
     <div class="main-wrapper">
         <div class="main-wrapper__row main-wrapper__row_first">
             <div class="tile-grid">
@@ -75,7 +74,10 @@
             </div>
             
             <div class="info">
-                <img src="../pictures/g12656.png" alt="" class="riddle-card">
+                <div id="timer" class="timer">
+                    <!-- Место для таймера -->
+                </div>
+                <img src="" alt="" class="riddle-card">
             </div>
             
 
@@ -122,20 +124,18 @@
                 </div>
             </div> -->
 
-        
-       
-
     </div>
-<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel"
+<div class="modal fade" id="endGameModal" tabindex="-1" role="dialog" aria-labelledby="endGameModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="aboutModalLabel">Время вышло :(</h5>
+                <h5 class="modal-title" id="endGameModalLabel">Время вышло!</h5>
             </div>
             <div class="modal-body">
-                <div class="aboutModal-title">Ваш результат:</div>
-
+                <div class="endGameModal-title">
+                    <!-- Место под итоги -->
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" id="back-to-menu" class="btn btn-secondary" data-dismiss="modal">Назад</button>

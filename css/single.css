@@ -130,14 +130,21 @@ html, body {
 }
 
 .riddle-card {
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  margin: auto;
 }
 
 .info {
-  width: 43%;
+  /* width: 43%; */
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
+  height: 438px;
+}
+
+.timer {
+  font-size: 18pt;
 }
 
 
