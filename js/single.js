@@ -1,12 +1,16 @@
-$(document).ready(function() {
+$(document).ready(function () {
     configureGame();
     refreshTimer();
+    keyBoardHandler();
+    dragAndDropHandler();
+    checkRiddlecardHandler();
+});
 
+function keyBoardHandler() {
     var curTileId = '';
-    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 
     ////// KEYBOARD HANDLER //////
-    $(document).on('keydown', function(e) {
+    $(document).on('keydown', function (e) {
         if (curTileId == '') {
             return;
         }
@@ -14,18 +18,18 @@ $(document).ready(function() {
         Rotate(e.keyCode);
         Flip(e.keyCode);
     });
-   
+
     function Flip(keyCode) {
         if (keyCode != 83) {
             return;
         }
-        
+
         var image = $('#' + curTileId).children()[0];
 
         var strImageUrl = image.src;
         var index = strImageUrl.indexOf('/pictures/');
         var fileName = strImageUrl.substring(index + 10);
-        
+
         var newFileName = fileName.split('.')[0] + "-back.png";
         if (fileName.includes("back")) {
             var parts = fileName.split("-back");
@@ -40,74 +44,61 @@ $(document).ready(function() {
 
         var image = $('#' + curTileId).children()[0];
         var str = image.style.transform;
-        
+
         if (str != '') {
             rotation = parseInt(str.split('(')[1].split('deg)'));
         }
 
         // A и стрелка влево
         if (keyCode == 65 || keyCode == 37) {
-            if (curTileId == "cat-long") rotation -= 60;
-                                    else rotation -= 120;
+            rotation -= 120;
             if (rotation < 0) {
                 rotation += 360;
             }
         }
-        
+
         // D и стрелка вправо
         if (keyCode == 68 || keyCode == 39) {
-            if (curTileId == "cat-long") rotation += 60;
-                                    else rotation += 120;
-            if (rotation > 360) {
+            rotation += 120;
+            if (rotation >= 360) {
                 rotation -= 360;
             }
         }
 
         if (curTileId == "cat-long") {
-            console.log("done");
-            if (rotation == 0 || rotation == 360) {
+            if (rotation == 0) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translateY(-20%)');
-            }
-            if (rotation == 60) {
-                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(0, 0)');
             }
             if (rotation == 120) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%, 10%)');
             }
-            if (rotation == 180) {
-                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(33%, 0%)');
-            }
             if (rotation == 240) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(33%, -20%)');
             }
-            if (rotation == 300) {
-                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%,-30%)');
-            }
-        }
-        else
-        //    if (rotation == 120) {
-        //        $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
-       //         translate (16%,10%);}
-        //    if (rotation == 240) {$('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)'); translate (0,0);}
-       // } else
-        $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
+        } 
+        else {
+            $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
+        }   
     }
 
-    // function placeLongCatTileBack() {
-    //     var place = $('#cat-long').parent();
-    //     if (place.hasClass('tile-border')) {
-    //         place.css('z-index', 1);
-    //     }
-    // }
+    $('.tile').mouseenter(function () {
+        curTileId = $(this).attr('id');
+    });
 
+    $('.tile').mouseleave(function () {
+        curTileId = '';
+    });
+}
+
+function dragAndDropHandler() {
     ////// DRAG&DROP //////
     var dragObject = {};
 
-    document.onmousedown = function(e) {
-        if (e.which != 1) return; 
+    document.onmousedown = function (e) {
+        if (e.which != 1) return;
 
         var elem = e.target.closest('.tile');
-        if (!elem) return; 
+        if (!elem) return;
 
         dragObject.elem = elem;
 
@@ -121,7 +112,7 @@ $(document).ready(function() {
         dragObject.elem.style.zIndex = 1000;
 
         moveAt(e);
-        
+
         function moveAt(e) {
             dragObject.elem.style.left = e.pageX - shiftX + 'px';
             dragObject.elem.style.top = e.pageY - shiftY + 'px';
@@ -135,13 +126,13 @@ $(document).ready(function() {
             };
         };
 
-        document.onmousemove = function(e) {
+        document.onmousemove = function (e) {
             if (!dragObject.elem) return;
 
             moveAt(e);
         }
 
-        document.onmouseup = function(e) {
+        document.onmouseup = function (e) {
             if (dragObject.elem) {
                 finishDrag(e);
             }
@@ -168,87 +159,19 @@ $(document).ready(function() {
         }
 
     }
-
-
-    // TODO: Всю клетку с длинными котом z-index - 1
-
-
-    $('.tile').mouseenter(function() {
-        curTileId = $(this).attr('id');
-    });
-    
-    $('.tile').mouseleave(function() {
-        curTileId = '';
-    });
-
-
-
-    setLongCatWidth();
-    // setGridPosition();
-
-
-    // $('.tile').on('dragstart', function(e) {
-    //     $(this).css('opacity', '0.5');
-
-    //     e.originalEvent.dataTransfer.effectAllowed = 'move';
-    //     e.originalEvent.dataTransfer.setData('text/html', $(this)[0].innerHTML);
-    // });
-
-    // $('.tile').on('dragend', function(e) {
-    //     $(this).css('opacity', '1');
-    // });
-
-    // $('.tile-border').on('dragenter', function(e) {
-    //     $(this).addClass('tile-border_active');
-    // })
-
-    // $('.tile-border').on('dragleave', function(e) {
-    //     $(this).removeClass('tile-border_active');
-    // })
-
-    // $('.tile').on('drop', function(e) {
-    //     $(this)[0].innerHTML = e.originalEvent.dataTransfer.getData('text/html');
-    // })
-    $("#back-to-menu").on("click", function(){
-        location.href="../html/start_screen.html"
-    });
-
-    $('.btn-check').on('click', function() {
-        var curRiddleCard = riddleCards[riddleCardId];
-        if (Check() == curRiddleCard['codeSequence']) {
-            $('.btn-check').css('background-color', 'green');
-            completedCards += 1;
-            getNextRiddleCard();
-            setKittiesOnStartPosition();
-        }
-        else {
-            $('.btn-check').css('background-color', 'red');
-        }
-        setTimeout(function() {
-            $('.btn-check').css('background-color', 'buttonface');
-        }, 2000);
-    });
-
-});
-
-function setLongCatWidth() {
-    var width = $('#cat-black').prop('width');
-    $('#cat-long').css('width', width * 1.5);
 }
 
-
-function setGridPosition() {
-    $('.tile-grid__row').each(function(index) {
-        $(this).css('top', (-14 * index).toString() + 'px');
-    })
+function setLongCatView() {
+    var width = $('#cat-black').prop('width');
+    $('#cat-long').css('width', width * 1.5);
+    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 }
 
 // Начальное время таймера
-var sec = 30;
-var min = 300;
+var sec = 0;
+var min = 45;
 
-function refreshTimer()
-{
+function refreshTimer() {
     sec--;
     if (sec == -01) {
         sec = 59;
@@ -258,11 +181,11 @@ function refreshTimer()
         sec = "0" + sec;
     }
     time = (min <= 9 ? "0" + min : min) + ":" + sec;
-    
+
     if (document.getElementById) {
         timer.innerHTML = time;
     }
-    
+
     inter = setTimeout("refreshTimer()", 1000);
 
     if (min == '00' && sec == '00') {
@@ -276,72 +199,188 @@ function finishGame() {
         backdrop: 'static',
         keyboard: false
     });
-
     $('.endGameModal-title').text("Ваш результат: " + completedCards + ".");
-
     $("#endGameModal").modal('show');
+    $("#back-to-menu").on("click", function () {
+        location.href = "../html/start_screen.html"
+    });
+}
+
+function checkRiddlecardHandler() {
+    specialCardsPaths = ['../pictures/g12656.png']
+
+    $('.btn-check').on('click', function () {
+        var curRiddleCard = riddleCards[riddleCardId];
+        if (isSpecialCard(curRiddleCard)) {
+            specialCardsChecker(curRiddleCard);
+        } else {
+            ordinaryCardsChecker(curRiddleCard)
+        }
+        resetBtnColor();
+    });
+
+    function ordinaryCardsChecker(curRiddleCard) {
+        if (Check() == curRiddleCard['codeSequence']) {
+            rightAnswer();
+            completedCards += 1;
+            getNextRiddleCard();
+            setKittiesOnStartPosition();
+        } else {
+            wrongAnswer();
+        }
+    }
+
+    function centralSpaceChecker() {
+        if ($('#cat-yellow').parent().next().length == 1) {
+            return true;
+        }
+    }
+
+    function wrongAnswer() {
+        $('.btn-check').css('background-color', 'red');
+    }
+
+    function rightAnswer() {
+        $('.btn-check').css('background-color', 'green');
+    }
+
+    function resetBtnColor() {
+        setTimeout(function () {
+            $('.btn-check').css('background-color', 'buttonface');
+        }, 2000);
+    }
+
+    function isSpecialCard(curRiddleCard) {
+        return specialCardsPaths.includes(curRiddleCard['path']);
+    }
+
+    function specialCardsChecker(curRiddleCard) {
+        isCorrect = false;
+        if (Check() == curRiddleCard['codeSequence']) {
+            switch (curRiddleCard['path']) {
+                case '../pictures/g12656.png':
+                    if (centralSpaceChecker()) {
+                        isCorrect = true;
+                    }
+                    break;
+            }
+        }
+        if (isCorrect) {
+            rightAnswer();
+            completedCards += 1;
+            getNextRiddleCard();
+            setKittiesOnStartPosition();
+        } else {
+            wrongAnswer();
+        }
+    }
 }
 
 function Check() {
-    var Checkrow = '';
-    $(".tile-border").each(function() {
+    var checkRow = '';
+    $(".tile-border").each(function () {
         if ($(this).children(".tile").length == 0) {
-            Checkrow += 's';
+            checkRow += '';
         } else {
             var tile = $(this).children(".tile")[0];
+            var catImage = $(this).children(".tile").children()[0];
             switch (tile.id) {
                 case 'cat-white':
-                    Checkrow += 'w';break;
+                    if (isBackSide(catImage)) checkRow += 'W';
+                    else checkRow += 'w';
+                    break;
                 case 'cat-orange':
-                    Checkrow += 'o';break;
+                    if (isBackSide(catImage)) checkRow += 'O';
+                    else checkRow += 'o';
+                    break;
                 case 'cat-black':
-                    Checkrow += 'b'; break;
+                    if (isBackSide(catImage)) checkRow += 'B';
+                    else checkRow += 'b';
+                    break;
                 case 'cat-blue':
-                    Checkrow += 'f'; break;
+                    if (isBackSide(catImage)) checkRow += 'F';
+                    else checkRow += 'f';
+                    break;
                 case 'cat-grey':
-                    Checkrow += 'g'; break;
+                    if (isBackSide(catImage)) checkRow += 'G';
+                    else checkRow += 'g';
+                    break;
                 case 'cat-yellow':
-                    Checkrow += 'y'; break;
+                    if (isBackSide(catImage)) checkRow += 'Y';
+                    else checkRow += 'y';
+                    break;
                 case 'cat-long':
-                    Checkrow += 'l'; break;
+                    if (isBackSide()) checkRow += 'L';
+                    else checkRow += 'l';
+                    break;
             }
         }
     });
-    //Массив индексов, которые нам нужно проверить на пустоту
-    var CheckMas = [[0,4,9], [1,5,10], [2,7,11], [3,8,12], [0,1,2,3], [9,10,11,12]];
-    var ifs = true;
-    $(CheckMas).each(function(a) {
-        ifs = true;
-        $(CheckMas[a]).each(function(c) {
-            if (Checkrow[CheckMas[a][c]] != 's') {
-                ifs = false;
-                // break?
+    console.log('checkRow before deg: ' + checkRow);
+    checkRow = getCheckRowWithRotation(checkRow);
+    console.log('checkRow after deg: ' + checkRow);
+
+    return checkRow;
+
+    function isBackSide(catImage) {
+        return catImage.src.includes('back');
+    }
+
+    function getCheckRowWithRotation(codeSequence) {
+        modifyedCodeSequence = '';
+        for (var i = 0; i < codeSequence.length; i++) {
+            modifyedCodeSequence += codeSequence[i];
+            switch (codeSequence[i]) {
+                case 'W':
+                case 'w':
+                    modifyedCodeSequence += getTileRotation('cat-white');
+                    break;
+                case 'O':
+                case 'o':
+                    modifyedCodeSequence += getTileRotation('cat-orange');
+                    break;
+                case 'B':
+                case 'b':
+                    modifyedCodeSequence += getTileRotation('cat-black');
+                    break;
+                case 'F':
+                case 'f':
+                    modifyedCodeSequence += getTileRotation('cat-blue');
+                    break;
+                case 'G':
+                case 'g':
+                    modifyedCodeSequence += getTileRotation('cat-grey');
+                    break;
+                case 'Y':
+                case 'y':
+                    modifyedCodeSequence += getTileRotation('cat-yellow');
+                    break;
+                case 'L':
+                case 'l':
+                    modifyedCodeSequence += getTileRotation('cat-long');
+                    break;
             }
-        });
-        if (ifs) {
-            var b = Checkrow.split("");
-            $(CheckMas[a]).each(function (c) {
-                b[CheckMas[a][c]] = 'e';
-            });
-            Checkrow = b.join("");
         }
-    });
-    Checkrow = Checkrow.replace(/e/g, '');
+        return modifyedCodeSequence;
+    }
 
-    Checkrow = getCheckRowWithRotation(Checkrow);
-
-    return Checkrow;
+    function getTileRotation(id) {
+        transfromStr = $('#' + id).children('img').attr('style');
+        if (transfromStr == undefined) {
+            return 0;
+        }
+        return parseInt(transfromStr.split('(')[1].split('deg)'));
+    }
 }
 
 // Пулл карточек
-var riddleCards = [
-    {
+var riddleCards = [{
         'path': '../pictures/g12656.png',
-        'codeSequence': 'b240o240y360sg360f240w120'
+        'codeSequence': 'b240o240y0g0f240w120'
     },
     {
-        'path': '../pictures/g2016.png',
-        'codeSequence': 's'
+        'path': '../pictures/g65669.png',
+        'codeSequence': 'y0o240g0f240w120'
     }
 ]
 var riddleCardId = -1;
@@ -354,6 +393,7 @@ function configureGame() {
 
     riddleCards.sort(compareRandom);
     getNextRiddleCard();
+    setLongCatView();
 }
 
 function getNextRiddleCard() {
@@ -366,47 +406,12 @@ function getNextRiddleCard() {
 
 function setKittiesOnStartPosition() {
     var base = $('.cat-tiles-base');
-    $('.tile').each(function() {
+    $('.tile').each(function () {
         $(this).css('position', 'relative');
+        $(this).css('left', '0');
+        $(this).css('top', '0');
+        $(this).children().css('transform', 'rotate(0deg)');
         base.append($(this));
     });
-}
-
-function getTileRotation(id) {
-    transfromStr = $('#' + id).children('img').attr('style');
-    if (transfromStr == undefined) {
-        return 360;
-    }
-    return parseInt(transfromStr.split('(')[1].split('deg)'));
-}
-
-function getCheckRowWithRotation(codeSequence) {
-    modifyedCodeSequence = '';
-    for (var i = 0; i < codeSequence.length; i++) {
-        modifyedCodeSequence += codeSequence[i];
-        switch (codeSequence[i]) {
-            case 'w':
-                modifyedCodeSequence += getTileRotation('cat-white');
-                break;
-            case 'o':
-                modifyedCodeSequence += getTileRotation('cat-orange');
-                break;
-            case 'b':
-                modifyedCodeSequence += getTileRotation('cat-black');
-                break;
-            case 'f':
-                modifyedCodeSequence += getTileRotation('cat-blue');
-                break;
-            case 'g':
-                modifyedCodeSequence += getTileRotation('cat-grey');
-                break;
-            case 'y':
-                modifyedCodeSequence += getTileRotation('cat-yellow');
-                break;
-            case 'l':
-                modifyedCodeSequence += getTileRotation('cat-long');
-                break;
-        }
-    }
-    return modifyedCodeSequence;
+    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 }
