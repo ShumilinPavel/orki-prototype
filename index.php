@@ -9,7 +9,7 @@
     <title>Kiity Rush</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/start_screen.css">
+    <link rel="stylesheet" href="./css/start_screen.css">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -18,7 +18,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="../js/start_screen.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -26,9 +25,10 @@
         <div class="main-flex-element">
             <div class="menu">
                 <div class="menu__title">Kitty Rush</div>
-                <button type="button" class="btn btn-info btn-lg menu__option" id="single-mode-btn">Одиночный
-                    режим</button>
-                <button type="button" class="btn btn-primary btn-lg menu__option">Многопользовательский режим</button>
+                <button type="button" class="btn btn-info btn-lg menu__option" id="single-mode-btn"
+                    onclick="location.href='./html/single.html'">Одиночный режим</button>
+                <button type="button" class="btn btn-primary btn-lg menu__option"
+                    onclick="location.href='./php/multiplayer.php'">Многопользовательский режим</button>
                 <button type="button" class="btn btn-primary btn-lg menu__option" data-toggle="modal"
                     data-target="#aboutModal">
                     Об игре

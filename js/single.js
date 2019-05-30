@@ -202,7 +202,7 @@ function finishGame() {
     $('.endGameModal-title').text("Ваш результат: " + completedCards + ".");
     $("#endGameModal").modal('show');
     $("#back-to-menu").on("click", function () {
-        location.href = "../html/start_screen.html"
+        location.href = "../index.php";
     });
 }
 
