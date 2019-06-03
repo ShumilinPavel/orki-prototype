@@ -41,7 +41,7 @@
                                 <div class="player__name player__name_me">
                                     <? echo $myPlayerInfo['player']; ?>
                                 </div>
-                                <button class="player__status">Готов!</button>
+                                <button class="player__status player__status_me">Готов!</button>
                             </div>
                     <? endif;
                     endforeach; ?>
@@ -71,10 +71,13 @@
                     <div class="player__status">
                         Готовность
                     </div>
-                </div>
-            </div> -->
+                </div> -->
+            </div>
+            <div class="start-game-timer">
+                <!-- Место для вывода таймера до начала игры -->
+            </div>
         </div>
-        <!-- <button class="start-game">Начать игру</button> -->
+       
     </div>
 </body>
 </html>

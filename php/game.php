@@ -63,11 +63,11 @@ class Game {
 	}
 	
 	public function getPlayersInfo($code) {
-		$query = "SELECT id, player FROM game WHERE code=".$code;
+		$query = "SELECT id, player, ready FROM game WHERE code=".$code;
 		$playersInfo = [];
 		if ($result = $this->mysqlconnect->query($query)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player']);
+				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player'], 'ready'=>$row['ready']);
 				array_push($playersInfo, $playerInfo);
 			}
 		}
