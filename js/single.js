@@ -1,6 +1,6 @@
 $(document).ready(function () {
     configureGame();
-    refreshTimer();
+    startTimer();
     keyBoardHandler();
     dragAndDropHandler();
     checkRiddlecardHandler();
@@ -14,13 +14,13 @@ function keyBoardHandler() {
         if (curTileId == '') {
             return;
         }
-
+        console.log(e.keyCode);
         Rotate(e.keyCode);
         Flip(e.keyCode);
     });
 
     function Flip(keyCode) {
-        if (keyCode != 83) {
+        if (keyCode != 83 && keyCode != 32) {
             return;
         }
 
@@ -168,38 +168,52 @@ function setLongCatView() {
 }
 
 // Начальное время таймера
-var sec = 0;
-var min = 45;
+// var sec = 0;
+// var min = 45;
 
-function refreshTimer() {
-    sec--;
-    if (sec == -01) {
-        sec = 59;
-        min = min - 1;
-    }
-    if (sec <= 9) {
-        sec = "0" + sec;
-    }
-    time = (min <= 9 ? "0" + min : min) + ":" + sec;
+// function refreshTimer() {
+//     sec--;
+//     if (sec == -01) {
+//         sec = 59;
+//         min = min - 1;
+//     }
+//     if (sec <= 9) {
+//         sec = "0" + sec;
+//     }
+//     time = (min <= 9 ? "0" + min : min) + ":" + sec;
 
-    if (document.getElementById) {
-        timer.innerHTML = time;
-    }
+//     if (document.getElementById) {
+//         timer.innerHTML = time;
+//     }
 
-    inter = setTimeout("refreshTimer()", 1000);
+//     inter = setTimeout("refreshTimer()", 1000);
 
-    if (min == '00' && sec == '00') {
-        clearInterval(inter);
-        finishGame();
-    }
+//     if (min == '00' && sec == '00') {
+//         clearInterval(inter);
+//         finishGame();
+//     }
+// }
+
+var startTime = Date.now();
+var millisecInterval;
+var elapsedTime;
+
+function startTimer() {
+    millisecInterval = setInterval(function() {
+        elapsedTime = Date.now() - startTime;
+        if (document.getElementById) {
+            timer.innerHTML = (elapsedTime / 1000).toFixed(3);
+        }
+    }, 1);
 }
-
+            
 function finishGame() {
+    clearInterval(millisecInterval);
     $('#endGameModal').modal({
         backdrop: 'static',
         keyboard: false
     });
-    $('.endGameModal-title').text("Ваш результат: " + completedCards + ".");
+    $('.endGameModal-title').text("Ваш результат: " + completedCards + " карточек за " + (elapsedTime / 1000).toFixed(3));
     $("#endGameModal").modal('show');
     $("#back-to-menu").on("click", function () {
         location.href = "../index.php";
@@ -310,7 +324,7 @@ function Check() {
                     else checkRow += 'y';
                     break;
                 case 'cat-long':
-                    if (isBackSide()) checkRow += 'L';
+                    if (isBackSide(catImage)) checkRow += 'L';
                     else checkRow += 'l';
                     break;
             }
