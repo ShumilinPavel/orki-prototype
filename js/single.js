@@ -30,7 +30,10 @@ function keyboardHandler() {
 
         // A и стрелка влево
         if (keyCode == 65 || keyCode == 37) {
-            rotation -= 120;
+            if (curTileId == 'cat-long') {
+                rotation -= 60;
+            } else {
+            rotation -= 120;}
             if (rotation < 0) {
                 rotation += 360;
             }
@@ -38,7 +41,10 @@ function keyboardHandler() {
 
         // D и стрелка вправо
         if (keyCode == 68 || keyCode == 39) {
-            rotation += 120;
+            if (curTileId == 'cat-long') {
+                rotation += 60;
+            } else {
+            rotation += 120;}
             if (rotation >= 360) {
                 rotation -= 360;
             }
@@ -48,13 +54,22 @@ function keyboardHandler() {
             if (rotation == 0) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translateY(-20%)');
             }
+            if (rotation == 60) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translateY(-0%)');
+            }
             if (rotation == 120) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%, 10%)');
+            }
+            if (rotation == 180) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translateX(33%)');
             }
             if (rotation == 240) {
                 $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(33%, -20%)');
             }
-        } 
+            if (rotation == 300) {
+                $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg) translate(17%,-30%)');
+            }
+        }
         else {
             $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
         }   
@@ -372,13 +387,70 @@ function checkRiddleCardHandler() {
 }
 
 // Пулл карточек
-var riddleCards = [{
-        'path': '../pictures/g12656.png',
+var riddleCards = [
+    {
+        'path': '../pictures/pic1.png',
+        'codeSequences': ['sF240sG240L0O240s']
+    },
+    {
+        'path': '../pictures/pic2.png',
+        'codeSequences': ['w0sb240l300G240f240O240']
+    },
+    {
+        'path': '../pictures/pic3.png',
+        'codeSequences': ['b240L300G120y0f120W0s', 'sb240L300G120y0f120W0']
+    },
+    {
+        'path': '../pictures/pic4.png',
+        'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
+    },
+    {
+        'path': '../pictures/pic5.png',
+        'codeSequences': ['G240f0W240sl180sy0sb240s']
+    },
+    {
+        'path': '../pictures/pic6.png',
+        'codeSequences': ['sl0ssb240G240sf240O240W120']
+    },
+    {
+        'path': '../pictures/pic7.png',
+        'codeSequences': ['sl0ssb240G240sf240O240W120']
+    },
+    {
+        'path': '../pictures/pic8.png',
+        'codeSequences': ['y240g240o0sl180f120b0']
+    },
+    {
+        'path': '../pictures/pic9.png',
+        'codeSequences': ['y0o240G240sl180sw240sf120b0']
+    },
+    {
+        'path': '../pictures/pic10.png',
+        'codeSequences': ['L240O240F240Y240s', 'L240O240F240Y240s']
+    },
+    {
+        'path': '../pictures/pic11.png',
+        'codeSequences': ['l0sw240sf120b0ssy0s']
+    },
+    {
+        'path': '../pictures/pic12.png',
+        'codeSequences': ['Y240w240F120o0sg240sL60ss']
+    },
+    {
+        'path': '../pictures/pic13.png',
+        'codeSequences': ['G240f0W240ssb0sl240y0s']
+    },
+    {
+        'path': '../pictures/pic14.png',
         'codeSequences': ['b240o240y0sg0f240w120']
     },
     {
-        'path': '../pictures/g65669.png',
+        'path': '../pictures/pic15.png',
         'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
+    },
+    {
+        'path': '../pictures/pic16.png',
+        'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
     }
 ]
 var riddleCardId = -1;
@@ -400,9 +472,11 @@ function configureGame() {
     }
 }
 
+var cardOnGame = 3;
+
 function getNextRiddleCard() {
     riddleCardId += 1;
-    if (riddleCardId >= riddleCards.length) {
+    if (riddleCardId >= cardOnGame) {
         finishGame();
     };
     $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
