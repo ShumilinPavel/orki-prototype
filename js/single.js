@@ -1,45 +1,24 @@
 $(document).ready(function () {
     configureGame();
-    startTimer();
-    keyBoardHandler();
+    startTimer(Date.now());
+    keyboardHandler();
     dragAndDropHandler();
-    checkRiddlecardHandler();
+    checkRiddleCardHandler();
 });
 
-function keyBoardHandler() {
+function keyboardHandler() {
     var curTileId = '';
-
-    ////// KEYBOARD HANDLER //////
+    curTileIdHandler();
+    
     $(document).on('keydown', function (e) {
         if (curTileId == '') {
             return;
         }
-        console.log(e.keyCode);
-        Rotate(e.keyCode);
-        Flip(e.keyCode);
+        rotate(e.keyCode);
+        flip(e.keyCode);
     });
 
-    function Flip(keyCode) {
-        if (keyCode != 83 && keyCode != 32) {
-            return;
-        }
-
-        var image = $('#' + curTileId).children()[0];
-
-        var strImageUrl = image.src;
-        var index = strImageUrl.indexOf('/pictures/');
-        var fileName = strImageUrl.substring(index + 10);
-
-        var newFileName = fileName.split('.')[0] + "-back.png";
-        if (fileName.includes("back")) {
-            var parts = fileName.split("-back");
-            newFileName = parts[0] + parts[1];
-        }
-
-        $('#' + curTileId).children().attr("src", strImageUrl.substring(0, index + 10) + newFileName);
-    }
-
-    function Rotate(keyCode) {
+    function rotate(keyCode) {
         var rotation = 0;
 
         var image = $('#' + curTileId).children()[0];
@@ -81,17 +60,38 @@ function keyBoardHandler() {
         }   
     }
 
-    $('.tile').mouseenter(function () {
-        curTileId = $(this).attr('id');
-    });
+    function flip(keyCode) {
+        if (keyCode != 83 && keyCode != 32) {
+            return;
+        }
 
-    $('.tile').mouseleave(function () {
-        curTileId = '';
-    });
+        var image = $('#' + curTileId).children()[0];
+
+        var strImageUrl = image.src;
+        var index = strImageUrl.indexOf('/pictures/');
+        var fileName = strImageUrl.substring(index + 10);
+
+        var newFileName = fileName.split('.')[0] + "-back.png";
+        if (fileName.includes("back")) {
+            var parts = fileName.split("-back");
+            newFileName = parts[0] + parts[1];
+        }
+
+        $('#' + curTileId).children().attr("src", strImageUrl.substring(0, index + 10) + newFileName);
+    }
+
+    function curTileIdHandler() {
+        $('.tile').mouseenter(function () {
+            curTileId = $(this).attr('id');
+        });
+    
+        $('.tile').mouseleave(function () {
+            curTileId = '';
+        });
+    }
 }
 
 function dragAndDropHandler() {
-    ////// DRAG&DROP //////
     var dragObject = {};
 
     document.onmousedown = function (e) {
@@ -113,11 +113,6 @@ function dragAndDropHandler() {
 
         moveAt(e);
 
-        function moveAt(e) {
-            dragObject.elem.style.left = e.pageX - shiftX + 'px';
-            dragObject.elem.style.top = e.pageY - shiftY + 'px';
-        }
-
         function getCoords(elem) {
             var box = elem.getBoundingClientRect();
             return {
@@ -125,6 +120,11 @@ function dragAndDropHandler() {
                 left: box.left + pageXOffset
             };
         };
+
+        function moveAt(e) {
+            dragObject.elem.style.left = e.pageX - shiftX + 'px';
+            dragObject.elem.style.top = e.pageY - shiftY + 'px';
+        }
 
         document.onmousemove = function (e) {
             if (!dragObject.elem) return;
@@ -157,48 +157,13 @@ function dragAndDropHandler() {
 
             return elem.closest('.droppable');
         }
-
     }
 }
 
-function setLongCatView() {
-    var width = $('#cat-black').prop('width');
-    $('#cat-long').css('width', width * 1.5);
-    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
-}
-
-// Начальное время таймера
-// var sec = 0;
-// var min = 45;
-
-// function refreshTimer() {
-//     sec--;
-//     if (sec == -01) {
-//         sec = 59;
-//         min = min - 1;
-//     }
-//     if (sec <= 9) {
-//         sec = "0" + sec;
-//     }
-//     time = (min <= 9 ? "0" + min : min) + ":" + sec;
-
-//     if (document.getElementById) {
-//         timer.innerHTML = time;
-//     }
-
-//     inter = setTimeout("refreshTimer()", 1000);
-
-//     if (min == '00' && sec == '00') {
-//         clearInterval(inter);
-//         finishGame();
-//     }
-// }
-
-var startTime = Date.now();
 var millisecInterval;
 var elapsedTime;
 
-function startTimer() {
+function startTimer(startTime) {
     millisecInterval = setInterval(function() {
         elapsedTime = Date.now() - startTime;
         if (document.getElementById) {
@@ -220,194 +185,219 @@ function finishGame() {
     });
 }
 
-function checkRiddlecardHandler() {
-    specialCardsPaths = ['../pictures/g12656.png']
-
+function checkRiddleCardHandler() {
     $('.btn-check').on('click', function () {
         var curRiddleCard = riddleCards[riddleCardId];
-        if (isSpecialCard(curRiddleCard)) {
-            specialCardsChecker(curRiddleCard);
-        } else {
-            ordinaryCardsChecker(curRiddleCard)
-        }
+        cardsChecker(curRiddleCard);
         resetBtnColor();
     });
 
-    function ordinaryCardsChecker(curRiddleCard) {
-        if (Check() == curRiddleCard['codeSequence']) {
-            rightAnswer();
-            completedCards += 1;
-            getNextRiddleCard();
-            setKittiesOnStartPosition();
-        } else {
+    function cardsChecker(curRiddleCard) {
+        var codeSequence = getCodeSequence();
+        var isCorrect = false;
+        for (var i = 0; i < curRiddleCard['codeSequences'].length; i++) {
+            if (codeSequence == curRiddleCard['codeSequences'][i]) {
+                rightAnswer();
+                completedCards += 1;
+                getNextRiddleCard();
+                setKittiesOnStartPosition();
+                isCorrect = true;
+                break;
+            }
+        }
+        if (!isCorrect) {
             wrongAnswer();
         }
-    }
+        // if (getCodeSequence() == curRiddleCard['codeSequence']) {
+        //     rightAnswer();
+        //     completedCards += 1;
+        //     getNextRiddleCard();
+        //     setKittiesOnStartPosition();
+        // } else {
+        //     wrongAnswer();
+        // }
 
-    function centralSpaceChecker() {
-        if ($('#cat-yellow').parent().next().length == 1) {
-            return true;
+        function rightAnswer() {
+            $('.btn-check').css('background-color', 'green');
+        }
+
+        function wrongAnswer() {
+            $('.btn-check').css('background-color', 'red');
+        }
+
+        function setKittiesOnStartPosition() {
+            var base = $('.cat-tiles-base');
+            $('.tile').each(function () {
+                $(this).css('position', 'relative');
+                $(this).css('left', '0');
+                $(this).css('top', '0');
+                $(this).children().css('transform', 'rotate(0deg)');
+                base.append($(this));
+            });
+            $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
+        }
+
+        function getCodeSequence() {
+            var codeSequence = '';
+            readCodeSequenceWithSpaces();
+            removeSpacePatterns();
+            addRotation();
+            return codeSequence;
+        
+            function readCodeSequenceWithSpaces() {
+                $(".tile-border").each(function () {
+                    if ($(this).children(".tile").length == 0) {
+                        codeSequence += 's';
+                    } else {
+                        var tile = $(this).children(".tile")[0];
+                        var catImage = $(this).children(".tile").children()[0];
+                        switch (tile.id) {
+                            case 'cat-white':
+                                if (isBackSide(catImage)) codeSequence += 'W';
+                                else codeSequence += 'w';
+                                break;
+                            case 'cat-orange':
+                                if (isBackSide(catImage)) codeSequence += 'O';
+                                else codeSequence += 'o';
+                                break;
+                            case 'cat-black':
+                                if (isBackSide(catImage)) codeSequence += 'B';
+                                else codeSequence += 'b';
+                                break;
+                            case 'cat-blue':
+                                if (isBackSide(catImage)) codeSequence += 'F';
+                                else codeSequence += 'f';
+                                break;
+                            case 'cat-grey':
+                                if (isBackSide(catImage)) codeSequence += 'G';
+                                else codeSequence += 'g';
+                                break;
+                            case 'cat-yellow':
+                                if (isBackSide(catImage)) codeSequence += 'Y';
+                                else codeSequence += 'y';
+                                break;
+                            case 'cat-long':
+                                if (isBackSide(catImage)) codeSequence += 'L';
+                                else codeSequence += 'l';
+                                break;
+                        }
+                    }
+                });
+                console.log('codeSequence before remove s: ' + codeSequence);
+        
+                function isBackSide(catImage) {
+                    return catImage.src.includes('back');
+                }
+            }
+        
+            function removeSpacePatterns() {
+                // Массив индексов, которые нам нужно проверить на пустоту
+                var removePatternsList = [[0,4,9], [1,5,10], [2,7,11], [3,8,12], [0,1,2,3], [9,10,11,12]];
+                var isPatternInCodeSequence = true;
+                for (var i = 0; i < removePatternsList.length; i++) {
+                    isPatternInCodeSequence = true;
+                    curPattern = removePatternsList[i];
+                    for (var j = 0; j < curPattern.length; j++) {
+                        if (codeSequence[curPattern[j]] != 's' && codeSequence[curPattern[j]] != '#') {
+                            isPatternInCodeSequence = false;
+                            break;
+                        }
+                    }
+                    if (isPatternInCodeSequence) {
+                        var charsList = codeSequence.split("");
+                        for (var j = 0; j < curPattern.length; j++) {
+                            charsList[curPattern[j]] = '#';
+                        }
+                        codeSequence = charsList.join("");
+                    }
+                }
+                codeSequence = codeSequence.replace(/#/g, '');
+                console.log('codeSequence after remove s: ' + codeSequence);
+            }
+        
+            function addRotation() {
+                modifyedCodeSequence = '';
+                for (var i = 0; i < codeSequence.length; i++) {
+                    modifyedCodeSequence += codeSequence[i];
+                    switch (codeSequence[i]) {
+                        case 'W':
+                        case 'w':
+                            modifyedCodeSequence += getTileRotation('cat-white');
+                            break;
+                        case 'O':
+                        case 'o':
+                            modifyedCodeSequence += getTileRotation('cat-orange');
+                            break;
+                        case 'B':
+                        case 'b':
+                            modifyedCodeSequence += getTileRotation('cat-black');
+                            break;
+                        case 'F':
+                        case 'f':
+                            modifyedCodeSequence += getTileRotation('cat-blue');
+                            break;
+                        case 'G':
+                        case 'g':
+                            modifyedCodeSequence += getTileRotation('cat-grey');
+                            break;
+                        case 'Y':
+                        case 'y':
+                            modifyedCodeSequence += getTileRotation('cat-yellow');
+                            break;
+                        case 'L':
+                        case 'l':
+                            modifyedCodeSequence += getTileRotation('cat-long');
+                            break;
+                    }
+                }
+                codeSequence = modifyedCodeSequence;
+                console.log('codeSequence after add rotation: ' + codeSequence);
+                
+                function getTileRotation(id) {
+                    transfromStr = $('#' + id).children('img').attr('style');
+                    if (transfromStr == undefined) {
+                        return 0;
+                    }
+                    return parseInt(transfromStr.split('(')[1].split('deg)'));
+                }
+            }
         }
     }
-
-    function wrongAnswer() {
-        $('.btn-check').css('background-color', 'red');
-    }
-
-    function rightAnswer() {
-        $('.btn-check').css('background-color', 'green');
-    }
-
+    
     function resetBtnColor() {
-        setTimeout(function () {
+        setTimeout(function() {
             $('.btn-check').css('background-color', 'buttonface');
         }, 2000);
-    }
-
-    function isSpecialCard(curRiddleCard) {
-        return specialCardsPaths.includes(curRiddleCard['path']);
-    }
-
-    function specialCardsChecker(curRiddleCard) {
-        isCorrect = false;
-        if (Check() == curRiddleCard['codeSequence']) {
-            switch (curRiddleCard['path']) {
-                case '../pictures/g12656.png':
-                    if (centralSpaceChecker()) {
-                        isCorrect = true;
-                    }
-                    break;
-            }
-        }
-        if (isCorrect) {
-            rightAnswer();
-            completedCards += 1;
-            getNextRiddleCard();
-            setKittiesOnStartPosition();
-        } else {
-            wrongAnswer();
-        }
-    }
-}
-
-function Check() {
-    var checkRow = '';
-    $(".tile-border").each(function () {
-        if ($(this).children(".tile").length == 0) {
-            checkRow += '';
-        } else {
-            var tile = $(this).children(".tile")[0];
-            var catImage = $(this).children(".tile").children()[0];
-            switch (tile.id) {
-                case 'cat-white':
-                    if (isBackSide(catImage)) checkRow += 'W';
-                    else checkRow += 'w';
-                    break;
-                case 'cat-orange':
-                    if (isBackSide(catImage)) checkRow += 'O';
-                    else checkRow += 'o';
-                    break;
-                case 'cat-black':
-                    if (isBackSide(catImage)) checkRow += 'B';
-                    else checkRow += 'b';
-                    break;
-                case 'cat-blue':
-                    if (isBackSide(catImage)) checkRow += 'F';
-                    else checkRow += 'f';
-                    break;
-                case 'cat-grey':
-                    if (isBackSide(catImage)) checkRow += 'G';
-                    else checkRow += 'g';
-                    break;
-                case 'cat-yellow':
-                    if (isBackSide(catImage)) checkRow += 'Y';
-                    else checkRow += 'y';
-                    break;
-                case 'cat-long':
-                    if (isBackSide(catImage)) checkRow += 'L';
-                    else checkRow += 'l';
-                    break;
-            }
-        }
-    });
-    console.log('checkRow before deg: ' + checkRow);
-    checkRow = getCheckRowWithRotation(checkRow);
-    console.log('checkRow after deg: ' + checkRow);
-
-    return checkRow;
-
-    function isBackSide(catImage) {
-        return catImage.src.includes('back');
-    }
-
-    function getCheckRowWithRotation(codeSequence) {
-        modifyedCodeSequence = '';
-        for (var i = 0; i < codeSequence.length; i++) {
-            modifyedCodeSequence += codeSequence[i];
-            switch (codeSequence[i]) {
-                case 'W':
-                case 'w':
-                    modifyedCodeSequence += getTileRotation('cat-white');
-                    break;
-                case 'O':
-                case 'o':
-                    modifyedCodeSequence += getTileRotation('cat-orange');
-                    break;
-                case 'B':
-                case 'b':
-                    modifyedCodeSequence += getTileRotation('cat-black');
-                    break;
-                case 'F':
-                case 'f':
-                    modifyedCodeSequence += getTileRotation('cat-blue');
-                    break;
-                case 'G':
-                case 'g':
-                    modifyedCodeSequence += getTileRotation('cat-grey');
-                    break;
-                case 'Y':
-                case 'y':
-                    modifyedCodeSequence += getTileRotation('cat-yellow');
-                    break;
-                case 'L':
-                case 'l':
-                    modifyedCodeSequence += getTileRotation('cat-long');
-                    break;
-            }
-        }
-        return modifyedCodeSequence;
-    }
-
-    function getTileRotation(id) {
-        transfromStr = $('#' + id).children('img').attr('style');
-        if (transfromStr == undefined) {
-            return 0;
-        }
-        return parseInt(transfromStr.split('(')[1].split('deg)'));
     }
 }
 
 // Пулл карточек
 var riddleCards = [{
         'path': '../pictures/g12656.png',
-        'codeSequence': 'b240o240y0g0f240w120'
+        'codeSequences': ['b240o240y0sg0f240w120']
     },
     {
         'path': '../pictures/g65669.png',
-        'codeSequence': 'y0o240g0f240w120'
+        'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
     }
 ]
 var riddleCardId = -1;
 var completedCards = 0;
-
+ 
 function configureGame() {
+    riddleCards.sort(compareRandom); // Сортировка карточек случайным образом
+    getNextRiddleCard();
+    setLongCatView();
+
     function compareRandom(a, b) {
         return Math.random() - 0.5;
     }
-
-    riddleCards.sort(compareRandom);
-    getNextRiddleCard();
-    setLongCatView();
+    
+    function setLongCatView() {
+        var width = $('#cat-black').prop('width');
+        $('#cat-long').css('width', width * 1.5);
+        $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
+    }
 }
 
 function getNextRiddleCard() {
@@ -416,16 +406,4 @@ function getNextRiddleCard() {
         finishGame();
     };
     $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
-}
-
-function setKittiesOnStartPosition() {
-    var base = $('.cat-tiles-base');
-    $('.tile').each(function () {
-        $(this).css('position', 'relative');
-        $(this).css('left', '0');
-        $(this).css('top', '0');
-        $(this).children().css('transform', 'rotate(0deg)');
-        base.append($(this));
-    });
-    $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
 }
