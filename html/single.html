@@ -21,7 +21,10 @@
     <script src="../js/single.js" charset="utf-8"></script>
 </head>
 
-<body>
+<body style="background: bisque">
+    <audio autoplay loop>
+        <source src="kittyRush.m4a">
+    </audio>
     <div class="main-wrapper">
         <div class="main-wrapper__row main-wrapper__row_first">
             <div class="tile-grid">
@@ -73,12 +76,11 @@
             </div>
 
             <div class="info">
-                <div id="timer" class="timer">
+                <div id="timer" class="timer" style="color: red; font-size: 19pt">
                     <!-- Место для таймера -->
                 </div>
                 <img src="" alt="" class="riddle-card">
             </div>
-
 
         </div>
 
@@ -88,7 +90,7 @@
                     <img class="tile__image" src="../pictures/orange.png" alt="">
                 </div>
                 <div class="tile" id="cat-black">
-                    <img class="tile__image" src="../pictures/black.png" alt="">
+                    <img class="tile__image" src="../pictures/black.png" alt="" onclick="soundClick()">
                 </div>
                 <div class="tile" id="cat-yellow">
                     <img class="tile__image" src="../pictures/yellow.png" alt="">
