@@ -43,7 +43,7 @@ function monitorReady() {
             }
         },
         complete: function() {
-            setTimeout('monitorReady()', 2000);
+            setTimeout(monitorReady(), 2000);
         }
     });
 }

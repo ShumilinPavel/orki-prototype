@@ -15,7 +15,7 @@ class Game {
 
 	public function __construct()
     {   
-        $this->mysqlconnect = new mysqli('localhost', 'root', 'root', 'kittyRush');
+        $this->mysqlconnect = new mysqli('localhost', 'root', 'password', 'kittyRush');
         if ($this->mysqlconnect->connect_errno)
             die("Connection to database failed");
     }
