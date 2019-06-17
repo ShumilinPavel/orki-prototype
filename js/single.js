@@ -115,12 +115,12 @@ function dragAndDropHandler() {
         var elem = e.target.closest('.tile');
         if (!elem) return;
 
-        var audio = new Audio();// Создаём новый элемент Audio
+        var audio = new Audio();
+        var rand =  4 * Math.random() - 0.5;
+        rand = Math.round(rand);
+        audio.src = sounds[rand];
+        audio.autoplay = true;
 
-            var rand =  - 0.5 + Math.random() * (4);
-            rand = Math.round(rand);
-        audio.src = sounds[rand]; // Указываем путь к звуку "клика"
-        audio.autoplay = true; // Автоматически запускаем
         dragObject.elem = elem;
 
         var coords = getCoords(dragObject.elem);
@@ -229,14 +229,14 @@ function checkRiddleCardHandler() {
         if (!isCorrect) {
             wrongAnswer();
         }
-         if (getCodeSequence() == curRiddleCard['codeSequence']) {
-             rightAnswer();
-             completedCards += 1;
-             getNextRiddleCard();
-             setKittiesOnStartPosition();
-         } else {
-             wrongAnswer();
-         }
+        //  if (getCodeSequence() == curRiddleCard['codeSequence']) {
+        //      rightAnswer();
+        //      completedCards += 1;
+        //      getNextRiddleCard();
+        //      setKittiesOnStartPosition();
+        //  } else {
+        //      wrongAnswer();
+        //  }
 
         function rightAnswer() {
             $('.btn-check').css('background-color', 'green');
@@ -408,68 +408,71 @@ function checkRiddleCardHandler() {
 var riddleCards = [
     {
         'path': '../pictures/pic1.png',
-        'codeSequences': ['sF240sG240L0O240s', 'sF240L0sG240ssO240ss']
+        'codeSequences': ['sF240sG240L0O240sY240', 'sF240L0sG240ssO240ssY240'],
+        'boxId': 2
     },
     {
         'path': '../pictures/pic2.png',
-        'codeSequences': ['w0sb240l300G240f240O240']
+        'codeSequences': ['w0sb240l300G240f240O240y120'],
+        'boxId': 1
     },
     {
         'path': '../pictures/pic3.png',
-        'codeSequences': ['b240L300G120y0f120W0s', 'sb240L300G120y0f120W0']
+        'codeSequences': ['b240L300G120y0f120W0sO0', 'sb240L300G120y0f120W0O0'],
+        'boxId': 2
     },
-    {
-        'path': '../pictures/pic4.png',
-        'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
-    },
-    {
-        'path': '../pictures/pic5.png',
-        'codeSequences': ['G240f0W240sl180sy0sb240s']
-    },
-    {
-        'path': '../pictures/pic6.png',
-        'codeSequences': ['sl0ssb240G240sf240O240W120']
-    },
-    {
-        'path': '../pictures/pic7.png',
-        'codeSequences': ['o0f0l0b0sss', 'so0f0l0b0ss']
-    },
-    {
-        'path': '../pictures/pic8.png',
-        'codeSequences': ['y240g240o0sl180f120b0']
-    },
-    {
-        'path': '../pictures/pic9.png',
-        'codeSequences': ['y0o240G240sl180sw240sf120b0']
-    },
-    {
-        'path': '../pictures/pic10.png',
-        'codeSequences': ['L240O240F240Y240s', 'L240O240sF240Y240', 'sL240O240F240Y240']
-    },
-    {
-        'path': '../pictures/pic11.png',
-        'codeSequences': ['l0sw240sf120b0ssy0s']
-    },
-    {
-        'path': '../pictures/pic12.png',
-        'codeSequences': ['Y240w240F120o0sg240sL60ss']
-    },
-    {
-        'path': '../pictures/pic13.png',
-        'codeSequences': ['G240f0W240ssb0sl240y0s']
-    },
-    {
-        'path': '../pictures/pic14.png',
-        'codeSequences': ['b240o240y0sg0f240w120']
-    },
-    {
-        'path': '../pictures/pic15.png',
-        'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
-    },
-    {
-        'path': '../pictures/pic16.png',
-        'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
-    }
+    // {
+    //     'path': '../pictures/pic4.png',
+    //     'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
+    // },
+    // {
+    //     'path': '../pictures/pic5.png',
+    //     'codeSequences': ['G240f0W240sl180sy0sb240s']
+    // },
+    // {
+    //     'path': '../pictures/pic6.png',
+    //     'codeSequences': ['sl0ssb240G240sf240O240W120']
+    // },
+    // {
+    //     'path': '../pictures/pic7.png',
+    //     'codeSequences': ['o0f0l0b0sss', 'so0f0l0b0ss']
+    // },
+    // {
+    //     'path': '../pictures/pic8.png',
+    //     'codeSequences': ['y240g240o0sl180f120b0']
+    // },
+    // {
+    //     'path': '../pictures/pic9.png',
+    //     'codeSequences': ['y0o240G240sl180sw240sf120b0']
+    // },
+    // {
+    //     'path': '../pictures/pic10.png',
+    //     'codeSequences': ['L240O240F240Y240s', 'L240O240sF240Y240', 'sL240O240F240Y240']
+    // },
+    // {
+    //     'path': '../pictures/pic11.png',
+    //     'codeSequences': ['l0sw240sf120b0ssy0s']
+    // },
+    // {
+    //     'path': '../pictures/pic12.png',
+    //     'codeSequences': ['Y240w240F120o0sg240sL60ss']
+    // },
+    // {
+    //     'path': '../pictures/pic13.png',
+    //     'codeSequences': ['G240f0W240ssb0sl240y0s']
+    // },
+    // {
+    //     'path': '../pictures/pic14.png',
+    //     'codeSequences': ['b240o240y0sg0f240w120']
+    // },
+    // {
+    //     'path': '../pictures/pic15.png',
+    //     'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
+    // },
+    // {
+    //     'path': '../pictures/pic16.png',
+    //     'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
+    // }
 ]
 var sounds = ['kitty1.wav', 'kitty2.wav', 'kitty3.wav', 'kitty4.wav'];
 
@@ -500,6 +503,11 @@ function getNextRiddleCard() {
         finishGame();
     };
     $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
+    setBox();
+
+    function setBox() {
+        $('.box-background').css('background-image', 'url("../pictures/box' + riddleCards[riddleCardId]['boxId'] + '.png")');
+    }
 }
 
 function soundClick() {
