@@ -81,6 +81,15 @@ html, body {
   transition: 200ms;
 }
 
+.box-background {
+  background: no-repeat center url("../pictures/box1.png");
+  /* background-size: 195px 200px; */
+  background-size: contain;
+  flex-grow: 1;
+  margin-left: 10px;
+  align-self: flex-start;
+}
+
 .tile-grid {
   background-image: url("../pictures/tile-grid-shell.png");
   background-repeat: no-repeat;
@@ -131,7 +140,7 @@ html, body {
 
 .riddle-card {
   /* margin-left: 10px; */
-  margin: auto;
+  margin: 10px;
 }
 
 .info {
@@ -139,7 +148,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  /* margin: auto; */
+  flex-grow: 1;
   height: 438px;
 }
 

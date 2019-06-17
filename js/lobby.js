@@ -33,9 +33,10 @@ function readyClickHandler() {
 function monitorReady() {
     $.ajax({
         type: 'POST',
-        url: 'getReadyStatus.php',
+        url: 'fetchDataFromDB.php',
         success: function(data) {
             data = JSON.parse(data);
+            addNewPlayers(data);
             colorizeReadyBtns(data);
             if (arePlayersReady(data) && noNotificationYet()) {
                 startGame();
@@ -43,6 +44,30 @@ function monitorReady() {
         },
         complete: function() {
             setTimeout('monitorReady()', 2000);
+        }
+    });
+}
+
+// Добавления подключившихся игроков
+function addNewPlayers(data) {
+    console.log(data);
+    data.forEach(el => {
+        let isAppend = true;
+        $(".player").each(function() {
+            if ($(this).attr('id') == 'player-' + el['id']) {
+                console.log(isAppend);
+                isAppend = false;
+                return false;
+            }
+        })
+        if (isAppend) {
+            console.log(el);
+            $(".players-board").append(
+                "<div class=\"player\" id=player-" + el['id'] + ">" +
+                    "<div class=\"player__name\">" + el['player'] + "</div>" +
+                    "<button class=\"player__status\">Готов!</button>" +
+                "</div>"
+            )
         }
     });
 }

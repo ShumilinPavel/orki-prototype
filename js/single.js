@@ -247,9 +247,20 @@ function checkRiddleCardHandler() {
                 $(this).css('left', '0');
                 $(this).css('top', '0');
                 $(this).children().css('transform', 'rotate(0deg)');
+                flipOnFrontSide($(this).children());
                 base.append($(this));
             });
             $("#cat-long").children().css('transform', 'rotate(0deg) translateY(-20%)');
+
+            function flipOnFrontSide(jQuery_image) {    
+                let splitted_path = jQuery_image.attr('src').split('/');
+                let picture_name = splitted_path[splitted_path.length - 1];
+                if (picture_name.includes('back')) {
+                    splitted_path[splitted_path.length - 1] = picture_name.split('-')[0] + '.png';
+                    path = splitted_path.join('/');
+                    jQuery_image.attr('src', path);
+                }
+            }
         }
 
         function getCodeSequence() {
@@ -390,68 +401,68 @@ function checkRiddleCardHandler() {
 var riddleCards = [
     {
         'path': '../pictures/pic1.png',
-        'codeSequences': ['sF240sG240L0O240s']
+        'codeSequences': ['sF240sG240L0O240s', 'sF240sG240L0O240sY240']
     },
     {
         'path': '../pictures/pic2.png',
-        'codeSequences': ['w0sb240l300G240f240O240']
+        'codeSequences': ['w0sb240l300G240f240O240', 'w0sb240l300G240f240O240y120']
     },
-    {
-        'path': '../pictures/pic3.png',
-        'codeSequences': ['b240L300G120y0f120W0s', 'sb240L300G120y0f120W0']
-    },
-    {
-        'path': '../pictures/pic4.png',
-        'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
-    },
-    {
-        'path': '../pictures/pic5.png',
-        'codeSequences': ['G240f0W240sl180sy0sb240s']
-    },
-    {
-        'path': '../pictures/pic6.png',
-        'codeSequences': ['sl0ssb240G240sf240O240W120']
-    },
-    {
-        'path': '../pictures/pic7.png',
-        'codeSequences': ['sl0ssb240G240sf240O240W120']
-    },
-    {
-        'path': '../pictures/pic8.png',
-        'codeSequences': ['y240g240o0sl180f120b0']
-    },
-    {
-        'path': '../pictures/pic9.png',
-        'codeSequences': ['y0o240G240sl180sw240sf120b0']
-    },
-    {
-        'path': '../pictures/pic10.png',
-        'codeSequences': ['L240O240F240Y240s', 'L240O240F240Y240s']
-    },
-    {
-        'path': '../pictures/pic11.png',
-        'codeSequences': ['l0sw240sf120b0ssy0s']
-    },
-    {
-        'path': '../pictures/pic12.png',
-        'codeSequences': ['Y240w240F120o0sg240sL60ss']
-    },
-    {
-        'path': '../pictures/pic13.png',
-        'codeSequences': ['G240f0W240ssb0sl240y0s']
-    },
-    {
-        'path': '../pictures/pic14.png',
-        'codeSequences': ['b240o240y0sg0f240w120']
-    },
-    {
-        'path': '../pictures/pic15.png',
-        'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
-    },
-    {
-        'path': '../pictures/pic16.png',
-        'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
-    }
+    // {
+    //     'path': '../pictures/pic3.png',
+    //     'codeSequences': ['b240L300G120y0f120W0s', 'sb240L300G120y0f120W0']
+    // },
+    // {
+    //     'path': '../pictures/pic4.png',
+    //     'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
+    // },
+    // {
+    //     'path': '../pictures/pic5.png',
+    //     'codeSequences': ['G240f0W240sl180sy0sb240s']
+    // },
+    // {
+    //     'path': '../pictures/pic6.png',
+    //     'codeSequences': ['sl0ssb240G240sf240O240W120']
+    // },
+    // {
+    //     'path': '../pictures/pic7.png',
+    //     'codeSequences': ['so0f0l0b0ss', 'o0f0l0b0sss']
+    // },
+    // {
+    //     'path': '../pictures/pic8.png',
+    //     'codeSequences': ['y240g240o0sl180f120b0']
+    // },
+    // {
+    //     'path': '../pictures/pic9.png',
+    //     'codeSequences': ['y0o240G240sl180sw240sf120b0']
+    // },
+    // {
+    //     'path': '../pictures/pic10.png',
+    //     'codeSequences': ['L240O240F240Y240s']
+    // },
+    // {
+    //     'path': '../pictures/pic11.png',
+    //     'codeSequences': ['l0sw240sf120b0ssy0s']
+    // },
+    // {
+    //     'path': '../pictures/pic12.png',
+    //     'codeSequences': ['Y240w240F120o0sg240sL60ss']
+    // },
+    // {
+    //     'path': '../pictures/pic13.png',
+    //     'codeSequences': ['G240f0W240ssb0sl240y0s']
+    // },
+    // {
+    //     'path': '../pictures/pic14.png',
+    //     'codeSequences': ['b240o240y0sg0f240w120']
+    // },
+    // {
+    //     'path': '../pictures/pic15.png',
+    //     'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
+    // },
+    // {
+    //     'path': '../pictures/pic16.png',
+    //     'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
+    // }
 ]
 var riddleCardId = -1;
 var completedCards = 0;
@@ -476,7 +487,7 @@ var cardOnGame = 3;
 
 function getNextRiddleCard() {
     riddleCardId += 1;
-    if (riddleCardId >= cardOnGame) {
+    if (riddleCardId >= cardOnGame || riddleCardId >= riddleCards.length) {
         finishGame();
     };
     $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
