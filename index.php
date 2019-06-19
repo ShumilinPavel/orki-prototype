@@ -18,6 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="./js/index.js"></script>
 </head>
 
 <body>
@@ -25,10 +26,12 @@
         <div class="main-flex-element">
             <div class="menu">
                 <div class="menu__title">Kitty Rush</div>
-                <button type="button" class="btn btn-info btn-lg menu__option" id="single-mode-btn"
-                    onclick="location.href='./html/single.html'">Одиночный режим</button>
-                <button type="button" class="btn btn-primary btn-lg menu__option"
-                    onclick="location.href='./php/multiplayer.php'">Многопользовательский режим</button>
+                <button type="button" class="btn btn-info btn-lg menu__option" id="single-mode-btn">
+                    Одиночный режим
+                </button>
+                <button type="button" class="btn btn-primary btn-lg menu__option" id="multiplayer-mode-btn">
+                    Многопользовательский режим
+                </button>
                 <button type="button" class="btn btn-primary btn-lg menu__option" data-toggle="modal"
                     data-target="#aboutModal">
                     Об игре

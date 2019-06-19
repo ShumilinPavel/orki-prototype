@@ -4,7 +4,14 @@ $(document).ready(function () {
     keyboardHandler();
     dragAndDropHandler();
     checkRiddleCardHandler();
+    switchSounds();
 });
+
+const PENALTY_FOR_WRONG_ANSWER = 5000;
+const CARDS_PER_GAME = 5;
+const THEME_MUSIC_VOLUME = 0.7;
+const KITTIES_SOUNDS_VOLUME = 0.4;
+const BTN_SOUNDS_VOLUME = 0.3;
 
 function keyboardHandler() {
     var curTileId = '';
@@ -106,6 +113,8 @@ function keyboardHandler() {
     }
 }
 
+var isSoundsAllowed = true;
+
 function dragAndDropHandler() {
     var dragObject = {};
 
@@ -115,11 +124,7 @@ function dragAndDropHandler() {
         var elem = e.target.closest('.tile');
         if (!elem) return;
 
-        var audio = new Audio();
-        var rand =  4 * Math.random() - 0.5;
-        rand = Math.round(rand);
-        audio.src = sounds[rand];
-        audio.autoplay = true;
+        soundOnTileClick();
 
         dragObject.elem = elem;
 
@@ -133,6 +138,17 @@ function dragAndDropHandler() {
         dragObject.elem.style.zIndex = 1000;
 
         moveAt(e);
+
+        function soundOnTileClick() {
+            var randIndex =  randomInteger(0, kittiesSounds.length - 1);
+            playSound("../audio/" + kittiesSounds[randIndex], KITTIES_SOUNDS_VOLUME);
+
+            function randomInteger(min, max) {
+                var rand = min - 0.5 + Math.random() * (max - min + 1)
+                rand = Math.round(rand);
+                return rand;
+            }
+        }
 
         function getCoords(elem) {
             var box = elem.getBoundingClientRect();
@@ -180,6 +196,7 @@ function dragAndDropHandler() {
         }
     }
 }
+
 var startTime = Date.now();
 var millisecInterval;
 var elapsedTime;
@@ -229,22 +246,16 @@ function checkRiddleCardHandler() {
         if (!isCorrect) {
             wrongAnswer();
         }
-        //  if (getCodeSequence() == curRiddleCard['codeSequence']) {
-        //      rightAnswer();
-        //      completedCards += 1;
-        //      getNextRiddleCard();
-        //      setKittiesOnStartPosition();
-        //  } else {
-        //      wrongAnswer();
-        //  }
 
         function rightAnswer() {
             $('.btn-check').css('background-color', 'green');
+            playSound("../audio/rightAnswer.mp3", BTN_SOUNDS_VOLUME);
         }
 
         function wrongAnswer() {
             $('.btn-check').css('background-color', 'red');
-            startTime -= 50000;
+            playSound("../audio/wrongAnswer.mp3", BTN_SOUNDS_VOLUME);
+            startTime -= PENALTY_FOR_WRONG_ANSWER;
         }
 
         function setKittiesOnStartPosition() {
@@ -421,68 +432,87 @@ var riddleCards = [
         'codeSequences': ['b240L300G120y0f120W0sO0', 'sb240L300G120y0f120W0O0'],
         'boxId': 2
     },
+    {
+        'path': '../pictures/pic4.png',
+        'codeSequences': ['y0f0o0ssl180sw0', 'y0f0o0sl180w0'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic5.png',
+        'codeSequences': ['G240f0W240sl180sy0sb240sO240'],
+        'boxId': 1
+    },
+    {
+        'path': '../pictures/pic6.png',
+        'codeSequences': ['sl0ssb240G240sf240O240W120y120'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic7.png', 
+        'codeSequences': ['o0f0l0b0sssy0', 'so0f0l0b0ssy0'],
+        'boxId': 2
+    },
     // {
-    //     'path': '../pictures/pic4.png',
-    //     'codeSequences': ['y0f0o0ssl180s', 'y0f0o0sl180']
+    //     'path': '../pictures/pic8.png', // Нужно исрпавить карточку. 2 черных кота
+    //     'codeSequences': ['y240g240o0sl180f120b0b240'],
+    //     'boxId': 1
     // },
     // {
-    //     'path': '../pictures/pic5.png',
-    //     'codeSequences': ['G240f0W240sl180sy0sb240s']
+    //     'path': '../pictures/pic9.png', // Нужно исправить карточку. 2 желтых кота
+    //     'codeSequences': ['y0o240G240sl180sw240sf120b0'],
+    //     'boxId': 1
     // },
-    // {
-    //     'path': '../pictures/pic6.png',
-    //     'codeSequences': ['sl0ssb240G240sf240O240W120']
-    // },
-    // {
-    //     'path': '../pictures/pic7.png',
-    //     'codeSequences': ['o0f0l0b0sss', 'so0f0l0b0ss']
-    // },
-    // {
-    //     'path': '../pictures/pic8.png',
-    //     'codeSequences': ['y240g240o0sl180f120b0']
-    // },
-    // {
-    //     'path': '../pictures/pic9.png',
-    //     'codeSequences': ['y0o240G240sl180sw240sf120b0']
-    // },
-    // {
-    //     'path': '../pictures/pic10.png',
-    //     'codeSequences': ['L240O240F240Y240s', 'L240O240sF240Y240', 'sL240O240F240Y240']
-    // },
-    // {
-    //     'path': '../pictures/pic11.png',
-    //     'codeSequences': ['l0sw240sf120b0ssy0s']
-    // },
-    // {
-    //     'path': '../pictures/pic12.png',
-    //     'codeSequences': ['Y240w240F120o0sg240sL60ss']
-    // },
-    // {
-    //     'path': '../pictures/pic13.png',
-    //     'codeSequences': ['G240f0W240ssb0sl240y0s']
-    // },
-    // {
-    //     'path': '../pictures/pic14.png',
-    //     'codeSequences': ['b240o240y0sg0f240w120']
-    // },
-    // {
-    //     'path': '../pictures/pic15.png',
-    //     'codeSequences': ['y0o240g0f240w120', 'y0o240g0sf240w120s']
-    // },
-    // {
-    //     'path': '../pictures/pic16.png',
-    //     'codeSequences': ['y0o0f0l0', 'sssssy0o0f0l0', 'y0o0f0l0sssss']
-    // }
+    {
+        'path': '../pictures/pic10.png',
+        'codeSequences': ['L240O240F240Y240sG240', 'L240O240sF240Y240G240', 'sL240O240F240Y240G240'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic11.png',
+        'codeSequences': ['l0sw240sf120b0ssy0so240'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic12.png',
+        'codeSequences': ['Y240w240F120o0sg240sL60ssB120'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic13.png',
+        'codeSequences': ['G240f0W240ssb0sl240y0sO240'],
+        'boxId': 1
+    },
+    {
+        'path': '../pictures/pic14.png',
+        'codeSequences': ['b240o240y0sg0f240w120l0'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic15.png',
+        'codeSequences': ['y0o240g0f240w120l0', 'y0o240g0sf240w120sl0'],
+        'boxId': 2
+    },
+    {
+        'path': '../pictures/pic16.png',
+        'codeSequences': ['y0o0f0l0b0', 'sssssy0o0f0l0b0', 'y0o0f0l0sssssb0'],
+        'boxId': 2
+    }
 ]
-var sounds = ['kitty1.wav', 'kitty2.wav', 'kitty3.wav', 'kitty4.wav'];
+var kittiesSounds = ['kitty1.wav', 'kitty2.wav', 'kitty3.wav', 'kitty4.wav'];
 
 var riddleCardId = -1;
 var completedCards = 0;
  
 function configureGame() {
+    adjustThemeMusicVolume(THEME_MUSIC_VOLUME);
     riddleCards.sort(compareRandom); // Сортировка карточек случайным образом
     getNextRiddleCard();
     setLongCatView();
+
+    function adjustThemeMusicVolume(volumeLevel) {
+        var audio = document.getElementById("theme-music");
+        audio.volume = volumeLevel;
+    }
 
     function compareRandom(a, b) {
         return Math.random() - 0.5;
@@ -495,11 +525,9 @@ function configureGame() {
     }
 }
 
-var cardOnGame = 3;
-
 function getNextRiddleCard() {
     riddleCardId += 1;
-    if (riddleCardId >= cardOnGame || riddleCardId >= riddleCards.length) {
+    if (riddleCardId >= CARDS_PER_GAME || riddleCardId >= riddleCards.length) {
         finishGame();
     };
     $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
@@ -510,9 +538,39 @@ function getNextRiddleCard() {
     }
 }
 
-function soundClick() {
-    console.log('dsfdsfsdf');
-    var audio = new Audio(); // Создаём новый элемент Audio
-    audio.src = 'kitty1.wav'; // Указываем путь к звуку "клика"
-    audio.autoplay = true; // Автоматически запускаем
+function playSound(source, volumeLevel) {
+    if (!isSoundsAllowed) return;
+    let audio = new Audio();
+    audio.src = source;
+    audio.volume = volumeLevel;
+    audio.autoplay = true;
 }
+
+function switchSounds() {
+    $('.controls__btn_music').click(function() {
+        let text = $(this).text();
+        if (text == 'On') {
+            setSoundsOff($(this));
+        }
+        else if (text == 'Off') {
+            setSoundsOn($(this));
+        }
+    });
+
+    function setSoundsOff(obj) {
+        let audio = document.getElementById("theme-music");
+        audio.volume = 0;
+        obj.text('Off');
+        obj.css('background-color', 'red');
+        isSoundsAllowed = false;
+    }
+
+    function setSoundsOn(obj) {
+        let audio = document.getElementById("theme-music");
+        audio.volume = THEME_MUSIC_VOLUME;
+        obj.text('On');
+        obj.css('background-color', 'lightgreen');
+        isSoundsAllowed = true;
+    }
+}
+

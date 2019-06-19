@@ -151,7 +151,7 @@ body {
   margin: 10px;
 }
 
-.info {
+.content {
   /* width: 43%; */
   display: flex;
   flex-direction: column;
@@ -161,8 +161,14 @@ body {
   height: 438px;
 }
 
+.content__header {
+  display: flex;
+  align-self: stretch;
+}
+
 .timer-wrapper {
   font-family: cursive;
+  margin: auto;
 }
 
 .timer {
@@ -174,6 +180,10 @@ body {
 .sec {
   display: inline-block;
   font-size: 14pt;
+}
+
+.controls__btn_music {
+  background-color: lightgreen;
 }
 
 

@@ -22,8 +22,8 @@
 </head>
 
 <body>
-    <audio autoplay loop>
-        <source src="kittyRush.m4a">
+    <audio id="theme-music" autoplay loop>
+        <source src="../audio/kittyRush.m4a">
     </audio>
     <div class="main-wrapper">
         <div class="main-wrapper__row main-wrapper__row_first">
@@ -75,13 +75,19 @@
                 </div>
             </div>
 
-            <div class="info">
-                <div class="timer-wrapper">
-                    <div id="timer" class="timer">
-                        <!-- Место для таймера -->
+            <div class="content">
+                <div class="content__header">
+                    <div class="timer-wrapper">
+                        <div id="timer" class="timer">
+                            <!-- Место для таймера -->
+                        </div>
+                        <div class="sec">sec.</div>
                     </div>
-                    <div class="sec">sec.</div>
+                    <div class="controls">
+                        <button class="controls__btn controls__btn_music">On</button>
+                    </div>
                 </div>
+               
                 <img src="" alt="" class="riddle-card">
                 <div class="box-background">
                     <div class="tile-border droppable">
