@@ -6,13 +6,6 @@ class Game {
 	
 	private $mysqlconnect;
 	
-	private function getLastInsertId() {
-		$query = 'SELECT id FROM game ORDER BY id DESC LIMIT 1';
-		$result = $this->mysqlconnect->query($query);
-		$row = mysqli_fetch_assoc($result);
-		return $row['id'];
-	}
-
 	public function __construct()
     {   
         $this->mysqlconnect = new mysqli('localhost', 'root', 'root', 'kittyRush');
@@ -62,28 +55,40 @@ class Game {
 		unset($_COOKIE);
 	}
 	
+	function getLastInsertId() {
+		$query = 'SELECT id FROM game ORDER BY id DESC LIMIT 1';
+		$result = $this->mysqlconnect->query($query);
+		$row = mysqli_fetch_assoc($result);
+		return $row['id'];
+	}
+
 	public function getPlayersInfo($code) {
-		$query = "SELECT id, player, ready FROM game WHERE code=".$code;
+		$query = "SELECT id, player, score, ready FROM game WHERE code='".$code."'";
 		$playersInfo = [];
 		if ($result = $this->mysqlconnect->query($query)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player'], 'ready'=>$row['ready']);
+				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player'], 'score'=>$row['score'], 'ready'=>$row['ready']);
 				array_push($playersInfo, $playerInfo);
 			}
 		}
 		return $playersInfo;
 	}
 
-	public function getMyPlayerInfo() {
-		$id = $this->getLastInsertId();
-		$query = "SELECT id, player FROM game WHERE id=".$id;
-		$result = $this->mysqlconnect->query($query);
-		$row = mysqli_fetch_assoc($result);
-		return array('id'=>$row['id'], 'player'=>$row['player']);
-	}
+	// public function getMyPlayerInfo() {
+	// 	$id = $this->getLastInsertId();
+	// 	$query = "SELECT id, player FROM game WHERE id=".$id;
+	// 	$result = $this->mysqlconnect->query($query);
+	// 	$row = mysqli_fetch_assoc($result);
+	// 	return array('id'=>$row['id'], 'player'=>$row['player']);
+	// }
 
 	public function setReady($id) {
 		$query = "UPDATE game SET ready=1 WHERE id=".$id; 
+		$this->mysqlconnect->query($query);
+	}
+
+	public function increaseScore($id) {
+		$query = "UPDATE game SET score=score+1 WHERE id ='".$id."'";
 		$this->mysqlconnect->query($query);
 	}
 }

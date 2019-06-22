@@ -3,11 +3,12 @@
     require('./game.php');
     $game = new Game();
     $playersInfo = $game->getPlayersInfo($_SESSION['code']);
-    $myPlayerInfo = $game->getMyPlayerInfo();
+    // $myPlayerInfo = $game->getMyPlayerInfo();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,62 +21,36 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="../js/lobby.js" charset="utf-8"></script>
 </head>
+
 <body>
     <div class="main">
         <div class="content">
             <div class="title">
                 Подтверждение готовности
             </div>
+
             <div class="players-board">
-                <?  foreach ($playersInfo as $playerInfo):
-                        if ($playerInfo['id'] != $myPlayerInfo['id']): ?>
-                            <div class="player" id=<?="player-".$playerInfo['id'] ?> >
-                                <div class="player__name">
-                                    <? echo $playerInfo['player']; ?>
-                                </div>
-                                <button class="player__status">Готов!</button>
+                <? foreach ($playersInfo as $playerInfo): ?>
+                    <div class="player" id=<?="player-".$playerInfo['id'] ?> >
+                        <? if ($playerInfo['id'] != $_SESSION['id']): ?>
+                            <div class="player__name">
+                                <? echo $playerInfo['player']; ?>
                             </div>
-                    <? else: ?>
-                            <div class="player" id=<?="player-".$playerInfo['id'] ?> >
-                                <div class="player__name player__name_me">
-                                    <? echo $myPlayerInfo['player']; ?>
-                                </div>
-                                <button class="player__status player__status_me">Готов!</button>
+                            <button class="player__status">Готов!</button>
+                        <? else: ?>
+                            <div class="player__name player__name_me">
+                                <? echo $playerInfo['player']; ?>
                             </div>
-                    <? endif;
-                    endforeach; ?>
-                
-                <!-- <div class="player">
-                    <div class="player__name">
-                        <?
-                            echo $_SESSION['username'];
-                        ?>
+                            <button class="player__status player__status_me">Готов!</button>
+                        <? endif; ?>
                     </div>
-                    <div class="player__status">
-                        Готовность
-                    </div>
-                </div>
-                <div class="player">
-                    <div class="player__name">
-                        <?
-                            if (count($players) > 1) {
-                                echo $players[1];
-                            }
-                            else {
-                                echo 'Ожидание игрока';
-                            }
-                        ?>
-                    </div>
-                    <div class="player__status">
-                        Готовность
-                    </div>
-                </div> -->
+                <? endforeach; ?>
             </div>
+
             <div class="start-game-timer">
                 <!-- Место для вывода таймера до начала игры -->
             </div>
         </div>
-       
     </div>
 </body>
 </html>

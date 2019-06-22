@@ -3,7 +3,6 @@
     require('./game.php');
     $game = new Game();
     $playersInfo = $game->getPlayersInfo($_SESSION['code']);
-    $myPlayerInfo = $game->getMyPlayerInfo();
 ?>
 
 
@@ -28,7 +27,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="../js/single.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="../js/play.js" charset="utf-8"></script>
+    <script src="../js/multiplayer.js"></script>
 </head>
 
 <body>
@@ -108,7 +109,26 @@
                         </div>
                     </div>
                     <div class="progress-table">
-
+                        <div class="progress-table__headers">
+                            <div class="progress-table__headers_player">Игрок</div>
+                            <div class="progress-table__headers_score">Счет</div>
+                        </div>
+                        <div class="progress-table__content">
+                            <? foreach ($playersInfo as $playerInfo): ?>
+                                <div class="player" id=<?="player-".$playerInfo['id'] ?> >
+                                    <? if ($playerInfo['id'] != $_SESSION['id']): ?>
+                                        <div class="player__name">
+                                            <? echo $playerInfo['player']; ?>
+                                        </div>
+                                    <? else: ?>
+                                        <div class="player__name player__name_me">
+                                            <? echo $playerInfo['player']; ?>
+                                        </div>
+                                    <? endif; ?>
+                                    <div class="player__score">0</div>
+                                </div>
+                            <? endforeach; ?>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -2,9 +2,57 @@
     display: flex;
     flex-grow: 1;
     align-self: stretch;
+    justify-content: space-between;
 }
 
 .box-background {
     flex-grow: initial;
 }
+
+.progress-table {
+    margin-right: 30px;
+    min-width: 220px;
+}
+
+.progress-table__headers {
+    display: flex;
+}
+
+.progress-table__headers_player, .progress-table__headers_score {
+    font-weight: bold;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+.progress-table__headers_player {
+    width: 60%;
+}
+
+.progress-table__headers_score {
+    width: 40%;
+}
+
+.player {
+    display: flex;
+}
+
+
+.player__name, .player__score {
+    text-align: center;
+    border: 1px solid black;
+}
+
+.player__name {
+    width: 60%;
+}
+
+.player__score {
+    width: 40%;
+}
+
+.player__name_me {
+    font-weight: bold;
+}
+
 

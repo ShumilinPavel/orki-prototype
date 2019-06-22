@@ -1,8 +1,9 @@
 <?php
-session_start();
-require('./game.php');
-$game = new Game();
+	session_start();
+	require('./game.php');
+	$game = new Game();
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,10 +20,11 @@ $game = new Game();
 
 <?php
 if (array_key_exists('enter', $_POST)) {
-    $_SESSION['username'] = $_POST['username'];
+    $_SESSION['player'] = $_POST['username'];
     $_SESSION['code'] = $_POST['code'];
-    $result = $game->enter($_POST['username'], $_POST['code']);
+    $result = $game->enter($_SESSION['player'], $_SESSION['code']);
     if ($result['RESULT']) {
+		$_SESSION['id'] = $game->getLastInsertId();
         echo '<meta http-equiv="Location" content="http://lobby.php">';
 		echo '<meta http-equiv="refresh" content="0;url=lobby.php">';
     } else {

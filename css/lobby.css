@@ -55,10 +55,12 @@ html, body {
     padding: 10px;
     border: 1px solid black;
     background-color: coral;
+    outline: none;
 }
 
 .player__status_me {
     cursor: pointer;
+    outline: initial;
 }
 
 .start-game-timer {

@@ -5,7 +5,14 @@ $(document).ready(function () {
     dragAndDropHandler();
     checkRiddleCardHandler();
     switchSounds();
+
+    if (window.location.href.includes("multiplayer.php")) {
+        isMultiplayer = true;
+        ScoresListener();
+    }
 });
+
+var isMultiplayer = false;
 
 const PENALTY_FOR_WRONG_ANSWER = 5000;
 const CARDS_PER_GAME = 3;
@@ -260,6 +267,24 @@ function checkRiddleCardHandler() {
         function rightAnswer() {
             $('.btn-check').css('background-color', 'green');
             playSound("../audio/rightAnswer.mp3", BTN_SOUNDS_VOLUME);
+            if (isMultiplayer) {
+                increaseScore();
+            }
+
+            function increaseScore() {
+                let id = $(".player__name_me").parent(".player").attr('id');
+                id = id.split('-')[1];
+                $.ajax({
+                    type: 'POST',
+                    url: 'increaseScore.php',
+                    data: {
+                        'id': id
+                    },
+                    error: function() {
+                        console.log('Ошибка ajax запроса');
+                    }
+                });
+            }
         }
 
         function wrongAnswer() {
@@ -579,6 +604,26 @@ function switchSounds() {
         audio.volume = THEME_MUSIC_VOLUME;
         obj.css('background-color', ALLOW_SOUNDS_INDICATOR_COLOR);
         isSoundsAllowed = true;
+    }
+}
+
+function ScoresListener() {
+    $.ajax({
+        type: 'POST',
+        url: 'fetchDataFromDB.php',
+        success: function(data) {
+            data = JSON.parse(data);
+            updateScores(data);
+        },
+        complete: function() {
+            setTimeout(ScoresListener(), 2000);
+        }
+    });
+
+    function updateScores(data) {
+        data.forEach(el => {
+            $('#player-' + el['id']).find(".player__score").text(el['score']);
+        });
     }
 }
 
