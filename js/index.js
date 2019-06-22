@@ -11,6 +11,7 @@ function btnSoundsHandler() {
     function playSound(source) {
         let audio = new Audio();
         audio.src = source;
+        audio.volume = 0.3;
         audio.autoplay = true;
     }
 }
@@ -24,7 +25,7 @@ function redirectHandler() {
 
     $('#multiplayer-mode-btn').click(function() {
         setTimeout(function() {
-            goTo("../php/multiplayer.php");
+            goTo("../php/enter.php");
         }, 200);
     })
 

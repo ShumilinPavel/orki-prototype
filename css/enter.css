@@ -1,0 +1,43 @@
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 40%;
+    border: 2px solid grey;
+    border-radius: 7%;
+    display: flex;
+}
+
+body{
+    background-color: bisque;
+}
+
+.wrapper form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 255px;
+    padding-top: 12%;
+}
+
+.confirm-button {
+    background-color: #d29b1d;
+    border-color: #d29b1d;
+    border-radius: 30%;
+}
+
+.kittens-header-img{
+    width: 25vw;
+    position:fixed;
+    left:38%;
+    top:-17%;
+    height: auto;
+}
+
+form {
+    background-color: lemonchiffon;
+    border-radius:1rem;
+}
+
+label, button{
+    font-family: "Comic Sans MS";
+}

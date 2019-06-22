@@ -107,7 +107,7 @@ function startGame(data) {
 
     function refreshTimer() {
         if (timeLeft == 0) {
-            window.location.href = "../html/single.html";
+            window.location.href = "../php/multiplayer.php";
         }
         else {
             timeLeft--;

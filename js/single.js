@@ -8,10 +8,12 @@ $(document).ready(function () {
 });
 
 const PENALTY_FOR_WRONG_ANSWER = 5000;
-const CARDS_PER_GAME = 5;
+const CARDS_PER_GAME = 3;
 const THEME_MUSIC_VOLUME = 0.7;
 const KITTIES_SOUNDS_VOLUME = 0.4;
 const BTN_SOUNDS_VOLUME = 0.3;
+const ALLOW_SOUNDS_INDICATOR_COLOR = 'rgb(144, 238, 144)';
+const FORBID_SOUNDS_INDICATOR_COLOR = 'rgb(255, 0, 0)';
 
 function keyboardHandler() {
     var curTileId = '';
@@ -212,6 +214,8 @@ function startTimer() {
             
 function finishGame() {
     clearInterval(millisecInterval);
+    stopThemeMusic();
+    playSound("../audio/victory.mp3", THEME_MUSIC_VOLUME);
     $('#endGameModal').modal({
         backdrop: 'static',
         keyboard: false
@@ -221,6 +225,12 @@ function finishGame() {
     $("#back-to-menu").on("click", function () {
         location.href = "../index.php";
     });
+
+    function stopThemeMusic() {
+        let audio = document.getElementById("theme-music");
+        audio.pause();
+        audio.currentTime = 0;
+    }
 }
 
 function checkRiddleCardHandler() {
@@ -548,11 +558,11 @@ function playSound(source, volumeLevel) {
 
 function switchSounds() {
     $('.controls__btn_music').click(function() {
-        let text = $(this).text();
-        if (text == 'On') {
+        let colorCode = $(this).css("background-color");
+        if (colorCode == ALLOW_SOUNDS_INDICATOR_COLOR) {
             setSoundsOff($(this));
         }
-        else if (text == 'Off') {
+        else if (colorCode == FORBID_SOUNDS_INDICATOR_COLOR) {
             setSoundsOn($(this));
         }
     });
@@ -560,16 +570,14 @@ function switchSounds() {
     function setSoundsOff(obj) {
         let audio = document.getElementById("theme-music");
         audio.volume = 0;
-        obj.text('Off');
-        obj.css('background-color', 'red');
+        obj.css('background-color', FORBID_SOUNDS_INDICATOR_COLOR);
         isSoundsAllowed = false;
     }
 
     function setSoundsOn(obj) {
         let audio = document.getElementById("theme-music");
         audio.volume = THEME_MUSIC_VOLUME;
-        obj.text('On');
-        obj.css('background-color', 'lightgreen');
+        obj.css('background-color', ALLOW_SOUNDS_INDICATOR_COLOR);
         isSoundsAllowed = true;
     }
 }

@@ -184,6 +184,12 @@ body {
 
 .controls__btn_music {
   background-color: lightgreen;
+  padding: 5px;
+  /* background-image: url("../pictures/volume.png"); */
+}
+
+.volume-icon {
+  width: 25px;
 }
 
 
