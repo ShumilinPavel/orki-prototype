@@ -1,0 +1,88 @@
+html {
+    background-color: bisque;
+}
+
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 40%;
+    border: 2px solid grey;
+    border-radius: 7%;
+    display: flex;
+}
+
+body{
+    background-color: lemonchiffon;
+}
+
+
+.wrapper form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 255px;
+    padding-top: 12%;
+}
+
+.confirm-button {
+    background-color: #d29b1d;
+    border-color: #d29b1d;
+}
+
+.kittens-header-img{
+    width: 10vw;
+    position:fixed;
+    left:32%;
+    top:20%;
+    height:auto;
+}
+
+.kittens-header-img-2{
+    width: 10vw;
+    position:fixed;
+    left:50.5%;
+    top:9%;
+    height:auto;
+    transform:rotate(-15deg);
+}
+
+.kittens-header-img-3{
+    width: 10vw;
+    position:fixed;
+    left:89%;
+    top:65%;
+    z-index:1001;
+    height:auto;
+    transform:rotate(-95deg);
+}
+
+.kittens-header-img-4{
+    width: 10vw;
+    position:fixed;
+    left:5%;
+    top:-2%;
+    z-index:1001;
+    height:auto;
+}
+
+.kittens-header-img-5{
+    width: 15vw;
+    position:fixed;
+    left:5%;
+    top:65%;
+    z-index:1001;
+    height:auto;
+}
+
+.input-wrapper {
+
+}
+
+form {
+    background-color: lemonchiffon;
+    border-radius:1rem;
+}
+
+label, button{
+    font-family: "Comic Sans MS";
+}
