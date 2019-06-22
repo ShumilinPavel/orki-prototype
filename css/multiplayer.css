@@ -1,0 +1,10 @@
+.content__row {
+    display: flex;
+    flex-grow: 1;
+    align-self: stretch;
+}
+
+.box-background {
+    flex-grow: initial;
+}
+
