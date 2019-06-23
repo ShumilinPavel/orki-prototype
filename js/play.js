@@ -16,24 +16,33 @@ $(document).ready(function () {
 var isMultiplayer = false;
 
 const PENALTY_FOR_WRONG_ANSWER = 5000;
-const CARDS_PER_GAME = 2;
+const CARDS_PER_GAME = 4;
 const THEME_MUSIC_VOLUME = 0.7;
 const KITTIES_SOUNDS_VOLUME = 0.4;
 const BTN_SOUNDS_VOLUME = 0.3;
 const ALLOW_SOUNDS_INDICATOR_COLOR = 'rgb(144, 238, 144)';
 const FORBID_SOUNDS_INDICATOR_COLOR = 'rgb(255, 0, 0)';
+const REQUEST_FREQUENCY = 2000;
 
 function keyboardHandler() {
     var curTileId = '';
     curTileIdHandler();
     
     $(document).on('keydown', function (e) {
+        checkBtn(e.keyCode);
         if (curTileId == '') {
             return;
         }
         rotate(e.keyCode);
         flip(e.keyCode);
     });
+
+    function checkBtn(keyCode) {
+        if (keyCode != 32) {
+            return;
+        }
+        $(".btn-check").click();
+    }
 
     function rotate(keyCode) {
         var rotation = 0;
@@ -50,7 +59,8 @@ function keyboardHandler() {
             if (curTileId == 'cat-long') {
                 rotation -= 60;
             } else {
-            rotation -= 120;}
+                rotation -= 120;
+            }
             if (rotation < 0) {
                 rotation += 360;
             }
@@ -61,7 +71,8 @@ function keyboardHandler() {
             if (curTileId == 'cat-long') {
                 rotation += 60;
             } else {
-            rotation += 120;}
+                rotation += 120;
+            }
             if (rotation >= 360) {
                 rotation -= 360;
             }
@@ -89,11 +100,11 @@ function keyboardHandler() {
         }
         else {
             $('#' + curTileId).children().css('transform', 'rotate(' + rotation + 'deg)');
-        }   
+        }
     }
 
     function flip(keyCode) {
-        if (keyCode != 83 && keyCode != 32) {
+        if (keyCode != 83) {
             return;
         }
 
@@ -654,7 +665,7 @@ function UpdateListener() {
             updateData(data);
         },
         complete: function() {
-            setTimeout(UpdateListener, 2000);
+            setTimeout(UpdateListener, REQUEST_FREQUENCY);
         }
     });
 
