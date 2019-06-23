@@ -100,11 +100,25 @@ function noNotificationYet() {
     return $('.start-game-timer__number').length == 0;
 }
 
-function startGame(data) {
+function startGame() {
     var timeLeft = 5;
+    generateRandomCardsIndexes();
     SetNotification();
     setTimeout(refreshTimer, 1000);
 
+    function generateRandomCardsIndexes() {
+        $.ajax({
+            type: 'POST',
+            url: 'generateRandomCardsIndexes.php',
+            success: function(res) {
+                $.cookie("cardsOrderIndexes", res);
+            },
+            error: function() {
+                console.log('Ошибка ajax запроса');
+            }
+        });
+    }
+ 
     function refreshTimer() {
         if (timeLeft == 0) {
             window.location.href = "../php/multiplayer.php";

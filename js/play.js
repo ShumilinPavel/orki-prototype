@@ -1,13 +1,14 @@
 $(document).ready(function () {
+    if (window.location.href.includes("multiplayer.php")) {
+        isMultiplayer = true;
+    }
     configureGame();
     startTimer(Date.now());
     keyboardHandler();
     dragAndDropHandler();
     checkRiddleCardHandler();
     switchSounds();
-
-    if (window.location.href.includes("multiplayer.php")) {
-        isMultiplayer = true;
+    if (isMultiplayer) {
         UpdateListener();
     }
 });
@@ -220,6 +221,9 @@ function startTimer() {
 }
             
 function finishGame() {
+    if (isMultiplayer) {
+        $.removeCookie("cardsOrderIndexes");
+    }
     clearInterval(millisecInterval);
     stopThemeMusic();
     playSound("../audio/victory.mp3", THEME_MUSIC_VOLUME);
@@ -262,7 +266,12 @@ function finishGame() {
 
 function checkRiddleCardHandler() {
     $('.btn-check').on('click', function () {
-        var curRiddleCard = riddleCards[riddleCardId];
+        var riddleCardsId = curRiddleCardNum;
+        if (isMultiplayer) {
+            riddleCardsId = cardsOrderIndexes[curRiddleCardNum];
+        }
+        var curRiddleCard = riddleCards[riddleCardsId];
+        console.log(curRiddleCard);
         cardsChecker(curRiddleCard);
         resetBtnColor();
     });
@@ -270,6 +279,7 @@ function checkRiddleCardHandler() {
     function cardsChecker(curRiddleCard) {
         var codeSequence = getCodeSequence();
         var isCorrect = false;
+        console.log(curRiddleCard);
         for (var i = 0; i < curRiddleCard['codeSequences'].length; i++) {
             if (codeSequence == curRiddleCard['codeSequences'][i]) {
                 rightAnswer();
@@ -555,15 +565,18 @@ var riddleCards = [
 ]
 var kittiesSounds = ['kitty1.wav', 'kitty2.wav', 'kitty3.wav', 'kitty4.wav'];
 
-var riddleCardId = -1;
+var curRiddleCardNum = -1;
 var completedCards = 0;
- 
+var cardsOrderIndexes = JSON.parse($.cookie("cardsOrderIndexes"));
+
 function configureGame() {
     adjustThemeMusicVolume(THEME_MUSIC_VOLUME);
-    riddleCards.sort(compareRandom); // Сортировка карточек случайным образом
+    if (!isMultiplayer) {
+        riddleCards.sort(compareRandom); // Сортировка карточек случайным образом
+    }
     getNextRiddleCard();
     setLongCatView();
-
+    
     function adjustThemeMusicVolume(volumeLevel) {
         var audio = document.getElementById("theme-music");
         audio.volume = volumeLevel;
@@ -581,15 +594,20 @@ function configureGame() {
 }
 
 function getNextRiddleCard() {
-    riddleCardId += 1;
-    if (riddleCardId >= CARDS_PER_GAME || riddleCardId >= riddleCards.length) {
+    curRiddleCardNum += 1;
+    if (curRiddleCardNum >= CARDS_PER_GAME || curRiddleCardNum >= riddleCards.length) {
         finishGame();
     };
-    $('.riddle-card').attr('src', riddleCards[riddleCardId]['path']);
+    var riddleCardsId = curRiddleCardNum;
+    if (isMultiplayer) {
+        riddleCardsId = cardsOrderIndexes[curRiddleCardNum];
+    }
+    console.log(riddleCards[riddleCardsId]);
+    $('.riddle-card').attr('src', riddleCards[riddleCardsId]['path']);
     setBox();
 
     function setBox() {
-        $('.box-background').css('background-image', 'url("../pictures/box' + riddleCards[riddleCardId]['boxId'] + '.png")');
+        $('.box-background').css('background-image', 'url("../pictures/box' + riddleCards[riddleCardsId]['boxId'] + '.png")');
     }
 }
 
