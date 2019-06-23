@@ -15,7 +15,7 @@ $(document).ready(function () {
 var isMultiplayer = false;
 
 const PENALTY_FOR_WRONG_ANSWER = 5000;
-const CARDS_PER_GAME = 1;
+const CARDS_PER_GAME = 2;
 const THEME_MUSIC_VOLUME = 0.7;
 const KITTIES_SOUNDS_VOLUME = 0.4;
 const BTN_SOUNDS_VOLUME = 0.3;

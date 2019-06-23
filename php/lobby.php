@@ -31,12 +31,12 @@
 
             <div class="players-board">
                 <? foreach ($playersInfo as $playerInfo): ?>
-                    <div class="player" id=<?="player-".$playerInfo['id'] ?> >
+                    <div class=<? echo "'player-".$playerInfo['id']." player'" ?> >
                         <? if ($playerInfo['id'] != $_SESSION['id']): ?>
                             <div class="player__name">
                                 <? echo $playerInfo['player']; ?>
                             </div>
-                            <button class="player__status">Готов!</button>
+                            <button class="player__status">Готов!</button>  
                         <? else: ?>
                             <div class="player__name player__name_me">
                                 <? echo $playerInfo['player']; ?>

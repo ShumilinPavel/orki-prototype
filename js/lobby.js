@@ -8,7 +8,7 @@ $(document).ready(function() {
 // Поменять значение поля ready моего игрока в БД (Сделать готовым можно только своего игрока)
 function readyClickHandler() {
     $('.player__status_me').on('click', function() {
-            var id = $(this).parent().attr('id').split('-')[1];
+            var id = $(this).parent().attr('class').split(' ')[0].split('-')[1];
             var data = {'id': id};
             var jquery_btn = $(this);
             $.ajax({
@@ -54,7 +54,7 @@ function addNewPlayers(data) {
     data.forEach(el => {
         let isAppend = true;
         $(".player").each(function() {
-            if ($(this).attr('id') == 'player-' + el['id']) {
+            if ($(this).attr('class').split(' ')[0] == 'player-' + el['id']) {
                 console.log(isAppend);
                 isAppend = false;
                 return false;
@@ -63,7 +63,7 @@ function addNewPlayers(data) {
         if (isAppend) {
             console.log(el);
             $(".players-board").append(
-                "<div class=\"player\" id=player-" + el['id'] + ">" +
+                "<div class=\"player-" + el['id'] + " player\"" + ">" +
                     "<div class=\"player__name\">" + el['player'] + "</div>" +
                     "<button class=\"player__status\">Готов!</button>" +
                 "</div>"
