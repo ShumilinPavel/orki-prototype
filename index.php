@@ -37,7 +37,7 @@
                     Об игре
                 </button>
             </div>
-            <img src="../pictures/cat.png" alt="sleeping cat" class="cat">
+            <img src="./pictures/cat.png" alt="sleeping cat" class="cat">
             <!-- <svg height="250" width="500">
                <polygon points="220,10 300,210 170,250 123,234" style="fill:lime;stroke:purple;stroke-width:1" />
             </svg> -->

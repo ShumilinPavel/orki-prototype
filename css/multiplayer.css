@@ -18,37 +18,32 @@
     display: flex;
 }
 
-.progress-table__headers_player, .progress-table__headers_score {
+.progress-table__headers_player, .progress-table__headers_score, .progress-table__headers_time {
     font-weight: bold;
     border: 1px solid black;
     padding: 10px;
     text-align: center;
 }
 
-.progress-table__headers_player {
-    width: 60%;
+.progress-table__headers_player, .player__name {
+    width: 140px;
 }
 
-.progress-table__headers_score {
-    width: 40%;
+.progress-table__headers_score, .player__score {
+   width: 80px;
+}
+
+.progress-table__headers_time, .player__time {
+    width: 140px;
 }
 
 .player {
     display: flex;
 }
 
-
-.player__name, .player__score {
+.player__name, .player__score, .player__time {
     text-align: center;
     border: 1px solid black;
-}
-
-.player__name {
-    width: 60%;
-}
-
-.player__score {
-    width: 40%;
 }
 
 .player__name_me {

@@ -21,15 +21,14 @@
     <link rel="stylesheet" href="../css/single.css">
     <link rel="stylesheet" href="../css/multiplayer.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    </script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="../js/play.js" charset="utf-8"></script>
-    <script src="../js/multiplayer.js"></script>
 </head>
 
 <body>
@@ -115,7 +114,7 @@
                         </div>
                         <div class="progress-table__content">
                             <? foreach ($playersInfo as $playerInfo): ?>
-                                <div class="player" id=<?="player-".$playerInfo['id'] ?> >
+                                <div class=<? echo "'player-".$playerInfo['id']." player'" ?> >
                                     <? if ($playerInfo['id'] != $_SESSION['id']): ?>
                                         <div class="player__name">
                                             <? echo $playerInfo['player']; ?>
@@ -188,10 +187,34 @@
                     <div class="endGameModal-title">
                         <!-- Место под итоги -->
                     </div>
+                    <div class="progress-table">
+                        <div class="progress-table__headers">
+                            <div class="progress-table__headers_player">Игрок</div>
+                            <div class="progress-table__headers_score">Счет</div>
+                            <div class="progress-table__headers_time">Результат</div>
+                        </div>
+                        <div class="progress-table__content">
+                            <? foreach ($playersInfo as $playerInfo): ?>
+                                <div class=<? echo "'player-".$playerInfo['id']." player'" ?> >
+                                    <? if ($playerInfo['id'] != $_SESSION['id']): ?>
+                                        <div class="player__name">
+                                            <? echo $playerInfo['player']; ?>
+                                        </div>
+                                    <? else: ?>
+                                        <div class="player__name player__name_me">
+                                            <? echo $playerInfo['player']; ?>
+                                        </div>
+                                    <? endif; ?>
+                                    <div class="player__score">0</div>
+                                    <div class="player__time">-</div>
+                                </div>
+                            <? endforeach; ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="back-to-menu" class="btn btn-secondary"
-                        data-dismiss="modal">Назад</button>
+                        data-dismiss="modal">В меню</button>
                 </div>
             </div>
         </div>

@@ -8,14 +8,14 @@ $(document).ready(function () {
 
     if (window.location.href.includes("multiplayer.php")) {
         isMultiplayer = true;
-        ScoresListener();
+        UpdateListener();
     }
 });
 
 var isMultiplayer = false;
 
 const PENALTY_FOR_WRONG_ANSWER = 5000;
-const CARDS_PER_GAME = 3;
+const CARDS_PER_GAME = 1;
 const THEME_MUSIC_VOLUME = 0.7;
 const KITTIES_SOUNDS_VOLUME = 0.4;
 const BTN_SOUNDS_VOLUME = 0.3;
@@ -223,20 +223,40 @@ function finishGame() {
     clearInterval(millisecInterval);
     stopThemeMusic();
     playSound("../audio/victory.mp3", THEME_MUSIC_VOLUME);
+    let time = (elapsedTime / 1000).toFixed(3);
     $('#endGameModal').modal({
         backdrop: 'static',
         keyboard: false
     });
-    $('.endGameModal-title').text("Ваш результат: " + completedCards + " карточек за " + (elapsedTime / 1000).toFixed(3));
+    $('.endGameModal-title').text("Ваш результат: " + completedCards + " карточек за " + time);
     $("#endGameModal").modal('show');
+    if (isMultiplayer) {
+        let id = $(".player__name_me").parent(".player").attr('class');
+        id = id.split(' ')[0].split('-')[1];
+        setTimeAndFinishedRecordsInDB(id, time);
+    }
     $("#back-to-menu").on("click", function () {
         location.href = "../index.php";
     });
-
+    
     function stopThemeMusic() {
         let audio = document.getElementById("theme-music");
         audio.pause();
         audio.currentTime = 0;
+    }
+
+    function setTimeAndFinishedRecordsInDB(id, time) {
+        $.ajax({
+            type: 'POST',
+            url: 'setTimeAndFinishedRecordsInDB.php',
+            data: {
+                'id': id,
+                'time': time
+            },
+            error: function() {
+                console.log('Ошибка ajax запроса');
+            }
+        });
     }
 }
 
@@ -272,8 +292,8 @@ function checkRiddleCardHandler() {
             }
 
             function increaseScore() {
-                let id = $(".player__name_me").parent(".player").attr('id');
-                id = id.split('-')[1];
+                let id = $(".player__name_me").parent(".player").attr('class');
+                id = id.split(' ')[0].split('-')[1];
                 $.ajax({
                     type: 'POST',
                     url: 'increaseScore.php',
@@ -607,22 +627,23 @@ function switchSounds() {
     }
 }
 
-function ScoresListener() {
+function UpdateListener() {
     $.ajax({
         type: 'POST',
         url: 'fetchDataFromDB.php',
         success: function(data) {
             data = JSON.parse(data);
-            updateScores(data);
+            updateData(data);
         },
         complete: function() {
-            setTimeout(ScoresListener(), 2000);
+            setTimeout(UpdateListener, 2000);
         }
     });
 
-    function updateScores(data) {
+    function updateData(data) {
         data.forEach(el => {
-            $('#player-' + el['id']).find(".player__score").text(el['score']);
+            $('.player-' + el['id']).find(".player__score").text(el['score']);
+            $('.player-' + el['id']).find(".player__time").text(el['time']);
         });
     }
 }

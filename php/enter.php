@@ -25,7 +25,7 @@ if (array_key_exists('enter', $_POST)) {
     $result = $game->enter($_SESSION['player'], $_SESSION['code']);
     if ($result['RESULT']) {
 		$_SESSION['id'] = $game->getLastInsertId();
-        echo '<meta http-equiv="Location" content="http://lobby.php">';
+        echo '<meta http-equiv="Location" content="http://lobby.php">';         // <script>
 		echo '<meta http-equiv="refresh" content="0;url=lobby.php">';
     } else {
         foreach ($result['MESSAGE'] as $msg) echo $msg . "</br>";

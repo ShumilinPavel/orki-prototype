@@ -63,11 +63,12 @@ class Game {
 	}
 
 	public function getPlayersInfo($code) {
-		$query = "SELECT id, player, score, ready FROM game WHERE code='".$code."'";
+		$query = "SELECT id, player, score, ready, time FROM game WHERE code='".$code."'";
 		$playersInfo = [];
 		if ($result = $this->mysqlconnect->query($query)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player'], 'score'=>$row['score'], 'ready'=>$row['ready']);
+				$playerInfo = array('id'=> $row['id'], 'player'=>$row['player'],
+									'score'=>$row['score'], 'ready'=>$row['ready'], 'time'=>$row['time']);
 				array_push($playersInfo, $playerInfo);
 			}
 		}
@@ -89,6 +90,11 @@ class Game {
 
 	public function increaseScore($id) {
 		$query = "UPDATE game SET score=score+1 WHERE id ='".$id."'";
+		$this->mysqlconnect->query($query);
+	}
+
+	public function setTimeAndFinishedRecordsInDB($id, $time) {
+		$query = "UPDATE game SET finished=1, time=".$time." WHERE id='".$id."'";
 		$this->mysqlconnect->query($query);
 	}
 }

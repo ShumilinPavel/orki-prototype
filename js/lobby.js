@@ -1,6 +1,6 @@
 $(document).ready(function() {
     readyClickHandler();
-    // setTimeout('monitorReady()', 500);
+    // setTimeout('monitorReady', 500);
     monitorReady();
 });
 
@@ -43,7 +43,7 @@ function monitorReady() {
             }
         },
         complete: function() {
-            setTimeout(monitorReady(), 2000);
+            setTimeout(monitorReady, 2000);
         }
     });
 }
@@ -77,7 +77,7 @@ function addNewPlayers(data) {
 function colorizeReadyBtns(data) {
     for (let i = 0; i < data.length; i++) {
         let playerId = data[i]['id'];
-        jqueryBtn = $('#player-' + playerId).children('.player__status');
+        jqueryBtn = $('.player-' + playerId).children('.player__status');
         if (data[i]['ready'] == 1) {
             jqueryBtn.css('background-color', 'green');
         }
